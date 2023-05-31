@@ -10,6 +10,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using Assistant.Repository;
 using Repository.Entity.Auto;
+using Repository.Repository.Auto;
 
 namespace ProcDirection
 {
@@ -36,7 +37,7 @@ namespace ProcDirection
                 into data1
                 select data1.Replace(".jpg", "")
                 into data1
-                select new Napr(data1)).ToList();
+                select new Napr(data1, path)).ToList();
             dgvData.DataSource = lis1;
         }
 
@@ -46,6 +47,20 @@ namespace ProcDirection
             if (openDialog.ShowDialog() == DialogResult.Cancel) return;
                 FileInfo fi = new FileInfo(openDialog.FileName);
             tbPath.Text = fi.DirectoryName;
+        }
+
+        private void tsbImport_Click(object sender, EventArgs e)
+        {
+            var naprList = new List<Napr>();
+            foreach (DataGridViewRow row in dgvData.Rows)
+            {
+                var arr = row;
+                var napr = new Napr(row.Cells["fio_d"].Value.ToString(), row.Cells["path"].Value.ToString());
+                naprList.Add(napr);
+            }
+            var _repo = new NaprRepository();
+            _repo.Save(naprList, true);
+
         }
     }
 }

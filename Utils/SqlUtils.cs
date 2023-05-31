@@ -127,7 +127,7 @@ namespace Assistant.Utils
 
         public static string ConnectionString()
         {
-            var connectionString = ConfigurationManager.ConnectionStrings["db"].ConnectionString;
+            var connectionString = ConfigurationManager.ConnectionStrings["bd"].ConnectionString;
             return connectionString;
         }
 

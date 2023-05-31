@@ -36,11 +36,11 @@
             this.tsViewPanel = new System.Windows.Forms.ToolStrip();
             this.tsnRefresh = new System.Windows.Forms.ToolStripButton();
             this.sebRefreshGridItem = new System.Windows.Forms.ToolStripSeparator();
+            this.tsbLoadTable = new System.Windows.Forms.ToolStripButton();
             this.tsbImport = new System.Windows.Forms.ToolStripButton();
             this.tsbDelByFiltr = new System.Windows.Forms.ToolStripButton();
             this.pFiltr = new System.Windows.Forms.Panel();
-            this.dgvData = new DataGridViewEx();
-            this.tsbLoadTable = new System.Windows.Forms.ToolStripButton();
+            this.dgvData = new ProcDirection.DataGridViewEx();
             this.ssStatus.SuspendLayout();
             this.tsViewPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvData)).BeginInit();
@@ -94,6 +94,18 @@
             this.sebRefreshGridItem.Name = "sebRefreshGridItem";
             this.sebRefreshGridItem.Size = new System.Drawing.Size(6, 48);
             // 
+            // tsbLoadTable
+            // 
+            this.tsbLoadTable.AutoSize = false;
+            this.tsbLoadTable.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.tsbLoadTable.Image = ((System.Drawing.Image)(resources.GetObject("tsbLoadTable.Image")));
+            this.tsbLoadTable.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.tsbLoadTable.ImageTransparentColor = System.Drawing.Color.White;
+            this.tsbLoadTable.Name = "tsbLoadTable";
+            this.tsbLoadTable.Size = new System.Drawing.Size(35, 35);
+            this.tsbLoadTable.Text = "Загрузить таблицу";
+            this.tsbLoadTable.Click += new System.EventHandler(this.tsbLoadTable_Click);
+            // 
             // tsbImport
             // 
             this.tsbImport.AutoSize = false;
@@ -104,6 +116,7 @@
             this.tsbImport.Name = "tsbImport";
             this.tsbImport.Size = new System.Drawing.Size(35, 35);
             this.tsbImport.Text = "Испорт списка пациентов";
+            this.tsbImport.Click += new System.EventHandler(this.tsbImport_Click);
             // 
             // tsbDelByFiltr
             // 
@@ -157,17 +170,6 @@
             this.dgvData.Size = new System.Drawing.Size(1114, 542);
             this.dgvData.TabIndex = 31;
             this.dgvData.VirtualMode = true;
-            // 
-            // tsbLoadTable
-            // 
-            this.tsbLoadTable.AutoSize = false;
-            this.tsbLoadTable.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.tsbLoadTable.Image = ((System.Drawing.Image)(resources.GetObject("tsbLoadTable.Image")));
-            this.tsbLoadTable.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
-            this.tsbLoadTable.ImageTransparentColor = System.Drawing.Color.White;
-            this.tsbLoadTable.Name = "tsbLoadTable";
-            this.tsbLoadTable.Size = new System.Drawing.Size(35, 35);
-            this.tsbLoadTable.Text = "Загрузить таблицу";
             // 
             // fImportData
             // 

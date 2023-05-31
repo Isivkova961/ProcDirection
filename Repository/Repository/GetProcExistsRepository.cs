@@ -1,11 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Assistant.Utils;
+﻿using Assistant.Utils;
 
-namespace Assistant.Repository.Repository
+namespace Repository.Repository
 {
     public partial class GetProcExistsRepository
     {

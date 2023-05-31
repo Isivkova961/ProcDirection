@@ -61,7 +61,8 @@ namespace Repository.Repository
         /// <returns></returns>
         public virtual SqlCommand List(string filter)
         {
-            return !CheckProcName(StoredProcList) ? null : StoredProcList.GetListProcedure(filter).Query();
+            return StoredProcList.GetListProcedure(filter).Query();
+            //return !CheckProcName(StoredProcList) ? null : StoredProcList.GetListProcedure(filter).Query();
         }
 
         /// <summary>
@@ -81,7 +82,7 @@ namespace Repository.Repository
         /// <param name="isNew">Тип сохранения: true - новые, false - изменяемые</param>
         public virtual void Save(dynamic items, bool isNew)
         {
-            if (!CheckProcName(StoredProcSave)) return;
+            //if (!CheckProcName(StoredProcSave)) return;
             string sqlText = GetSqlText(items, StoredProcSave);
 
             sqlText.Query().Exec();

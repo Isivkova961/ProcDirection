@@ -118,6 +118,7 @@
             this.tsbImport.Name = "tsbImport";
             this.tsbImport.Size = new System.Drawing.Size(35, 35);
             this.tsbImport.Text = "Испорт списка направлений";
+            this.tsbImport.Click += new System.EventHandler(this.tsbImport_Click);
             // 
             // dgvData
             // 
