@@ -29,10 +29,10 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(fProcDirections));
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             this.ssStatus = new System.Windows.Forms.StatusStrip();
             this.sslVersion = new System.Windows.Forms.ToolStripStatusLabel();
             this.msMenu = new System.Windows.Forms.MenuStrip();
@@ -42,15 +42,22 @@
             this.логToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.выгрузитьСписокНаправленийToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.pFiltr = new System.Windows.Forms.Panel();
+            this.dtpDateOut = new System.Windows.Forms.DateTimePicker();
+            this.dtpDateIn = new System.Windows.Forms.DateTimePicker();
+            this.lDateOut = new System.Windows.Forms.Label();
+            this.lDateIn = new System.Windows.Forms.Label();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.tsViewPanel = new System.Windows.Forms.ToolStrip();
             this.tsnRefresh = new System.Windows.Forms.ToolStripButton();
             this.sebRefreshGridItem = new System.Windows.Forms.ToolStripSeparator();
+            this.tsbImportBd = new System.Windows.Forms.ToolStripButton();
             this.tsbImport = new System.Windows.Forms.ToolStripButton();
             this.tsbCorrelate = new System.Windows.Forms.ToolStripButton();
             this.tsbExportList = new System.Windows.Forms.ToolStripButton();
+            this.tsbKolKmis = new System.Windows.Forms.ToolStripLabel();
             this.splitContainer2 = new System.Windows.Forms.SplitContainer();
             this.pbNapr = new System.Windows.Forms.PictureBox();
+            this.panel1 = new System.Windows.Forms.Panel();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
             this.tbsResreshNapr = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
@@ -60,14 +67,15 @@
             this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
             this.tsbDelete = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator4 = new System.Windows.Forms.ToolStripSeparator();
-            this.tsbLeft = new System.Windows.Forms.ToolStripButton();
             this.tsbRigth = new System.Windows.Forms.ToolStripButton();
+            this.tsbLeft = new System.Windows.Forms.ToolStripButton();
             this.tsbZoom = new System.Windows.Forms.ToolStripButton();
-            this.panel1 = new System.Windows.Forms.Panel();
+            this.tsbKolNapr = new System.Windows.Forms.ToolStripLabel();
             this.dgvData = new ProcDirection.DataGridViewEx();
             this.dgvNapr = new ProcDirection.DataGridViewEx();
             this.ssStatus.SuspendLayout();
             this.msMenu.SuspendLayout();
+            this.pFiltr.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -150,11 +158,49 @@
             // 
             // pFiltr
             // 
+            this.pFiltr.Controls.Add(this.dtpDateOut);
+            this.pFiltr.Controls.Add(this.dtpDateIn);
+            this.pFiltr.Controls.Add(this.lDateOut);
+            this.pFiltr.Controls.Add(this.lDateIn);
             this.pFiltr.Dock = System.Windows.Forms.DockStyle.Top;
             this.pFiltr.Location = new System.Drawing.Point(0, 24);
             this.pFiltr.Name = "pFiltr";
             this.pFiltr.Size = new System.Drawing.Size(1246, 100);
             this.pFiltr.TabIndex = 27;
+            // 
+            // dtpDateOut
+            // 
+            this.dtpDateOut.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.dtpDateOut.Location = new System.Drawing.Point(505, 51);
+            this.dtpDateOut.Name = "dtpDateOut";
+            this.dtpDateOut.Size = new System.Drawing.Size(200, 22);
+            this.dtpDateOut.TabIndex = 3;
+            // 
+            // dtpDateIn
+            // 
+            this.dtpDateIn.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.dtpDateIn.Location = new System.Drawing.Point(500, 17);
+            this.dtpDateIn.Name = "dtpDateIn";
+            this.dtpDateIn.Size = new System.Drawing.Size(200, 22);
+            this.dtpDateIn.TabIndex = 2;
+            // 
+            // lDateOut
+            // 
+            this.lDateOut.AutoSize = true;
+            this.lDateOut.Location = new System.Drawing.Point(404, 51);
+            this.lDateOut.Name = "lDateOut";
+            this.lDateOut.Size = new System.Drawing.Size(95, 15);
+            this.lDateOut.TabIndex = 1;
+            this.lDateOut.Text = "Дата окончания";
+            // 
+            // lDateIn
+            // 
+            this.lDateIn.AutoSize = true;
+            this.lDateIn.Location = new System.Drawing.Point(404, 24);
+            this.lDateIn.Name = "lDateIn";
+            this.lDateIn.Size = new System.Drawing.Size(73, 15);
+            this.lDateIn.TabIndex = 0;
+            this.lDateIn.Text = "Дата начала";
             // 
             // splitContainer1
             // 
@@ -183,9 +229,11 @@
             this.tsViewPanel.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.tsnRefresh,
             this.sebRefreshGridItem,
+            this.tsbImportBd,
             this.tsbImport,
             this.tsbCorrelate,
-            this.tsbExportList});
+            this.tsbExportList,
+            this.tsbKolKmis});
             this.tsViewPanel.Location = new System.Drawing.Point(0, 0);
             this.tsViewPanel.Name = "tsViewPanel";
             this.tsViewPanel.Size = new System.Drawing.Size(1246, 48);
@@ -209,6 +257,18 @@
             this.sebRefreshGridItem.Name = "sebRefreshGridItem";
             this.sebRefreshGridItem.Size = new System.Drawing.Size(6, 48);
             // 
+            // tsbImportBd
+            // 
+            this.tsbImportBd.AutoSize = false;
+            this.tsbImportBd.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.tsbImportBd.Image = ((System.Drawing.Image)(resources.GetObject("tsbImportBd.Image")));
+            this.tsbImportBd.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.tsbImportBd.ImageTransparentColor = System.Drawing.Color.White;
+            this.tsbImportBd.Name = "tsbImportBd";
+            this.tsbImportBd.Size = new System.Drawing.Size(35, 35);
+            this.tsbImportBd.Text = "Выгрузить из БД";
+            this.tsbImportBd.Click += new System.EventHandler(this.tsbImportBd_Click);
+            // 
             // tsbImport
             // 
             this.tsbImport.AutoSize = false;
@@ -218,7 +278,7 @@
             this.tsbImport.ImageTransparentColor = System.Drawing.Color.White;
             this.tsbImport.Name = "tsbImport";
             this.tsbImport.Size = new System.Drawing.Size(35, 35);
-            this.tsbImport.Text = "Добавить";
+            this.tsbImport.Text = "Выгрузить из Эксель";
             this.tsbImport.Click += new System.EventHandler(this.tsbImport_Click);
             // 
             // tsbCorrelate
@@ -230,7 +290,8 @@
             this.tsbCorrelate.ImageTransparentColor = System.Drawing.Color.White;
             this.tsbCorrelate.Name = "tsbCorrelate";
             this.tsbCorrelate.Size = new System.Drawing.Size(35, 35);
-            this.tsbCorrelate.Text = "Копировать";
+            this.tsbCorrelate.Text = "Сравнить";
+            this.tsbCorrelate.Click += new System.EventHandler(this.tsbCorrelate_Click);
             // 
             // tsbExportList
             // 
@@ -241,7 +302,14 @@
             this.tsbExportList.ImageTransparentColor = System.Drawing.Color.White;
             this.tsbExportList.Name = "tsbExportList";
             this.tsbExportList.Size = new System.Drawing.Size(35, 35);
-            this.tsbExportList.Text = "Изменить";
+            this.tsbExportList.Text = "Выгрузить в эксель";
+            this.tsbExportList.Click += new System.EventHandler(this.tsbExportList_Click);
+            // 
+            // tsbKolKmis
+            // 
+            this.tsbKolKmis.Name = "tsbKolKmis";
+            this.tsbKolKmis.Size = new System.Drawing.Size(46, 45);
+            this.tsbKolKmis.Text = "Кол-во";
             // 
             // splitContainer2
             // 
@@ -270,6 +338,14 @@
             this.pbNapr.TabIndex = 0;
             this.pbNapr.TabStop = false;
             // 
+            // panel1
+            // 
+            this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel1.Location = new System.Drawing.Point(0, 0);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(735, 215);
+            this.panel1.TabIndex = 1;
+            // 
             // toolStrip1
             // 
             this.toolStrip1.AutoSize = false;
@@ -285,7 +361,8 @@
             this.toolStripSeparator4,
             this.tsbRigth,
             this.tsbLeft,
-            this.tsbZoom});
+            this.tsbZoom,
+            this.tsbKolNapr});
             this.toolStrip1.Location = new System.Drawing.Point(0, 0);
             this.toolStrip1.Name = "toolStrip1";
             this.toolStrip1.Size = new System.Drawing.Size(1246, 48);
@@ -331,6 +408,7 @@
             this.tsbCorrelatePath.Name = "tsbCorrelatePath";
             this.tsbCorrelatePath.Size = new System.Drawing.Size(35, 35);
             this.tsbCorrelatePath.Text = "Соотнести";
+            this.tsbCorrelatePath.Click += new System.EventHandler(this.tsbCorrelatePath_Click);
             // 
             // tsbShowImage
             // 
@@ -359,24 +437,12 @@
             this.tsbDelete.Name = "tsbDelete";
             this.tsbDelete.Size = new System.Drawing.Size(35, 35);
             this.tsbDelete.Text = "Удалить";
+            this.tsbDelete.Click += new System.EventHandler(this.tsbDelete_Click);
             // 
             // toolStripSeparator4
             // 
             this.toolStripSeparator4.Name = "toolStripSeparator4";
             this.toolStripSeparator4.Size = new System.Drawing.Size(6, 48);
-            // 
-            // tsbLeft
-            // 
-            this.tsbLeft.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
-            this.tsbLeft.AutoSize = false;
-            this.tsbLeft.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.tsbLeft.Image = ((System.Drawing.Image)(resources.GetObject("tsbLeft.Image")));
-            this.tsbLeft.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
-            this.tsbLeft.ImageTransparentColor = System.Drawing.Color.White;
-            this.tsbLeft.Name = "tsbLeft";
-            this.tsbLeft.Size = new System.Drawing.Size(35, 35);
-            this.tsbLeft.Text = "Повернуть против часов";
-            this.tsbLeft.Click += new System.EventHandler(this.tsbLeft_Click);
             // 
             // tsbRigth
             // 
@@ -391,6 +457,19 @@
             this.tsbRigth.Text = "Повернуть по часовой";
             this.tsbRigth.Click += new System.EventHandler(this.tsbRigth_Click);
             // 
+            // tsbLeft
+            // 
+            this.tsbLeft.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
+            this.tsbLeft.AutoSize = false;
+            this.tsbLeft.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.tsbLeft.Image = ((System.Drawing.Image)(resources.GetObject("tsbLeft.Image")));
+            this.tsbLeft.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.tsbLeft.ImageTransparentColor = System.Drawing.Color.White;
+            this.tsbLeft.Name = "tsbLeft";
+            this.tsbLeft.Size = new System.Drawing.Size(35, 35);
+            this.tsbLeft.Text = "Повернуть против часов";
+            this.tsbLeft.Click += new System.EventHandler(this.tsbLeft_Click);
+            // 
             // tsbZoom
             // 
             this.tsbZoom.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
@@ -404,13 +483,11 @@
             this.tsbZoom.Text = "Изменение размеров";
             this.tsbZoom.Click += new System.EventHandler(this.tsbZoom_Click);
             // 
-            // panel1
+            // tsbKolNapr
             // 
-            this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel1.Location = new System.Drawing.Point(0, 0);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(735, 215);
-            this.panel1.TabIndex = 1;
+            this.tsbKolNapr.Name = "tsbKolNapr";
+            this.tsbKolNapr.Size = new System.Drawing.Size(46, 45);
+            this.tsbKolNapr.Text = "Кол-во";
             // 
             // dgvData
             // 
@@ -419,23 +496,23 @@
             this.dgvData.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dgvData.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
             this.dgvData.BackgroundColor = System.Drawing.SystemColors.GradientInactiveCaption;
-            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle5.Font = new System.Drawing.Font("Times New Roman", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            dataGridViewCellStyle5.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvData.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle5;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Times New Roman", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvData.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.dgvData.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle6.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
-            dataGridViewCellStyle6.Font = new System.Drawing.Font("Times New Roman", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            dataGridViewCellStyle6.ForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgvData.DefaultCellStyle = dataGridViewCellStyle6;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Times New Roman", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgvData.DefaultCellStyle = dataGridViewCellStyle2;
             this.dgvData.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgvData.Location = new System.Drawing.Point(0, 48);
             this.dgvData.Name = "dgvData";
@@ -453,23 +530,23 @@
             this.dgvNapr.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dgvNapr.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
             this.dgvNapr.BackgroundColor = System.Drawing.SystemColors.GradientInactiveCaption;
-            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle7.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle7.Font = new System.Drawing.Font("Times New Roman", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            dataGridViewCellStyle7.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle7.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle7.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle7.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvNapr.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle7;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Times New Roman", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvNapr.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle3;
             this.dgvNapr.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle8.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
-            dataGridViewCellStyle8.Font = new System.Drawing.Font("Times New Roman", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            dataGridViewCellStyle8.ForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle8.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle8.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle8.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgvNapr.DefaultCellStyle = dataGridViewCellStyle8;
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
+            dataGridViewCellStyle4.Font = new System.Drawing.Font("Times New Roman", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            dataGridViewCellStyle4.ForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgvNapr.DefaultCellStyle = dataGridViewCellStyle4;
             this.dgvNapr.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgvNapr.Location = new System.Drawing.Point(0, 0);
             this.dgvNapr.Name = "dgvNapr";
@@ -501,6 +578,8 @@
             this.ssStatus.PerformLayout();
             this.msMenu.ResumeLayout(false);
             this.msMenu.PerformLayout();
+            this.pFiltr.ResumeLayout(false);
+            this.pFiltr.PerformLayout();
             this.splitContainer1.Panel1.ResumeLayout(false);
             this.splitContainer1.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
@@ -556,6 +635,13 @@
         private System.Windows.Forms.ToolStripButton tsbRigth;
         private System.Windows.Forms.ToolStripButton tsbZoom;
         private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.ToolStripLabel tsbKolKmis;
+        private System.Windows.Forms.ToolStripLabel tsbKolNapr;
+        private System.Windows.Forms.ToolStripButton tsbImportBd;
+        private System.Windows.Forms.DateTimePicker dtpDateOut;
+        private System.Windows.Forms.DateTimePicker dtpDateIn;
+        private System.Windows.Forms.Label lDateOut;
+        private System.Windows.Forms.Label lDateIn;
     }
 }
 

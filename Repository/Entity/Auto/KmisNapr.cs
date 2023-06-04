@@ -8,8 +8,9 @@ namespace Repository.Entity.Auto
 {
     public class KmisNapr
     {
-        public KmisNapr(string _fio, string _fio_d, string _numberib, DateTime _date_gosp, DateTime _date_vipis,
-            string _otdel, string _address, int _type_gosp, string _polis)
+        public KmisNapr() { }
+        public KmisNapr(string _fio, string _fio_d, string _numberib, string _date_gosp, string _date_vipis,
+            string _otdel, string _address, string _type_gosp, string _polis)
         {
             fio = _fio;
             fio_d = _fio_d;
@@ -25,11 +26,11 @@ namespace Repository.Entity.Auto
         public string fio { get; set; }
         public string fio_d { get; set; }
         public string numberib { get; set; }
-        public DateTime date_gosp { get; set; }
-        public DateTime date_vipis { get; set; }
+        public string date_gosp { get; set; }
+        public string date_vipis { get; set; }
         public string otdel { get; set; }
         public string address { get; set; }
-        public int type_gosp { get; set; }
+        public string type_gosp { get; set; }
         public string polis { get; set; }
     }
 }

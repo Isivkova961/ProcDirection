@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Dynamic;
+using Repository;
 
 namespace Assistant.Repository.Entity
 {
