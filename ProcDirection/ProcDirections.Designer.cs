@@ -40,7 +40,7 @@
             this.tsmImportKmis = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmImportNapr = new System.Windows.Forms.ToolStripMenuItem();
             this.логToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.выгрузитьСписокНаправленийToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmExportNapr = new System.Windows.Forms.ToolStripMenuItem();
             this.pFiltr = new System.Windows.Forms.Panel();
             this.dtpDateOut = new System.Windows.Forms.DateTimePicker();
             this.dtpDateIn = new System.Windows.Forms.DateTimePicker();
@@ -71,6 +71,7 @@
             this.tsbLeft = new System.Windows.Forms.ToolStripButton();
             this.tsbZoom = new System.Windows.Forms.ToolStripButton();
             this.tsbKolNapr = new System.Windows.Forms.ToolStripLabel();
+            this.cebIsShow = new System.Windows.Forms.CheckBox();
             this.dgvData = new ProcDirection.DataGridViewEx();
             this.dgvNapr = new ProcDirection.DataGridViewEx();
             this.ssStatus.SuspendLayout();
@@ -114,7 +115,7 @@
             this.msMenu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.справочникОрганизацийToolStripMenuItem,
             this.логToolStripMenuItem,
-            this.выгрузитьСписокНаправленийToolStripMenuItem});
+            this.tsmExportNapr});
             this.msMenu.Location = new System.Drawing.Point(0, 0);
             this.msMenu.Name = "msMenu";
             this.msMenu.Size = new System.Drawing.Size(1246, 24);
@@ -150,14 +151,16 @@
             this.логToolStripMenuItem.Size = new System.Drawing.Size(40, 20);
             this.логToolStripMenuItem.Text = "Лог";
             // 
-            // выгрузитьСписокНаправленийToolStripMenuItem
+            // tsmExportNapr
             // 
-            this.выгрузитьСписокНаправленийToolStripMenuItem.Name = "выгрузитьСписокНаправленийToolStripMenuItem";
-            this.выгрузитьСписокНаправленийToolStripMenuItem.Size = new System.Drawing.Size(195, 20);
-            this.выгрузитьСписокНаправленийToolStripMenuItem.Text = "Выгрузить список направлений";
+            this.tsmExportNapr.Name = "tsmExportNapr";
+            this.tsmExportNapr.Size = new System.Drawing.Size(195, 20);
+            this.tsmExportNapr.Text = "Выгрузить список направлений";
+            this.tsmExportNapr.Click += new System.EventHandler(this.tsmExportNapr_Click);
             // 
             // pFiltr
             // 
+            this.pFiltr.Controls.Add(this.cebIsShow);
             this.pFiltr.Controls.Add(this.dtpDateOut);
             this.pFiltr.Controls.Add(this.dtpDateIn);
             this.pFiltr.Controls.Add(this.lDateOut);
@@ -165,13 +168,13 @@
             this.pFiltr.Dock = System.Windows.Forms.DockStyle.Top;
             this.pFiltr.Location = new System.Drawing.Point(0, 24);
             this.pFiltr.Name = "pFiltr";
-            this.pFiltr.Size = new System.Drawing.Size(1246, 100);
+            this.pFiltr.Size = new System.Drawing.Size(1246, 72);
             this.pFiltr.TabIndex = 27;
             // 
             // dtpDateOut
             // 
             this.dtpDateOut.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dtpDateOut.Location = new System.Drawing.Point(505, 51);
+            this.dtpDateOut.Location = new System.Drawing.Point(107, 37);
             this.dtpDateOut.Name = "dtpDateOut";
             this.dtpDateOut.Size = new System.Drawing.Size(200, 22);
             this.dtpDateOut.TabIndex = 3;
@@ -179,7 +182,7 @@
             // dtpDateIn
             // 
             this.dtpDateIn.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dtpDateIn.Location = new System.Drawing.Point(500, 17);
+            this.dtpDateIn.Location = new System.Drawing.Point(108, 10);
             this.dtpDateIn.Name = "dtpDateIn";
             this.dtpDateIn.Size = new System.Drawing.Size(200, 22);
             this.dtpDateIn.TabIndex = 2;
@@ -187,7 +190,7 @@
             // lDateOut
             // 
             this.lDateOut.AutoSize = true;
-            this.lDateOut.Location = new System.Drawing.Point(404, 51);
+            this.lDateOut.Location = new System.Drawing.Point(12, 44);
             this.lDateOut.Name = "lDateOut";
             this.lDateOut.Size = new System.Drawing.Size(95, 15);
             this.lDateOut.TabIndex = 1;
@@ -196,7 +199,7 @@
             // lDateIn
             // 
             this.lDateIn.AutoSize = true;
-            this.lDateIn.Location = new System.Drawing.Point(404, 24);
+            this.lDateIn.Location = new System.Drawing.Point(12, 17);
             this.lDateIn.Name = "lDateIn";
             this.lDateIn.Size = new System.Drawing.Size(73, 15);
             this.lDateIn.TabIndex = 0;
@@ -205,7 +208,7 @@
             // splitContainer1
             // 
             this.splitContainer1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.splitContainer1.Location = new System.Drawing.Point(0, 124);
+            this.splitContainer1.Location = new System.Drawing.Point(0, 96);
             this.splitContainer1.Name = "splitContainer1";
             this.splitContainer1.Orientation = System.Windows.Forms.Orientation.Horizontal;
             // 
@@ -218,8 +221,8 @@
             // 
             this.splitContainer1.Panel2.Controls.Add(this.splitContainer2);
             this.splitContainer1.Panel2.Controls.Add(this.toolStrip1);
-            this.splitContainer1.Size = new System.Drawing.Size(1246, 495);
-            this.splitContainer1.SplitterDistance = 240;
+            this.splitContainer1.Size = new System.Drawing.Size(1246, 523);
+            this.splitContainer1.SplitterDistance = 253;
             this.splitContainer1.TabIndex = 28;
             // 
             // tsViewPanel
@@ -326,7 +329,7 @@
             this.splitContainer2.Panel2.AutoScroll = true;
             this.splitContainer2.Panel2.Controls.Add(this.pbNapr);
             this.splitContainer2.Panel2.Controls.Add(this.panel1);
-            this.splitContainer2.Size = new System.Drawing.Size(1246, 203);
+            this.splitContainer2.Size = new System.Drawing.Size(1246, 218);
             this.splitContainer2.SplitterDistance = 518;
             this.splitContainer2.TabIndex = 29;
             // 
@@ -489,6 +492,16 @@
             this.tsbKolNapr.Size = new System.Drawing.Size(46, 45);
             this.tsbKolNapr.Text = "Кол-во";
             // 
+            // cebIsShow
+            // 
+            this.cebIsShow.AutoSize = true;
+            this.cebIsShow.Location = new System.Drawing.Point(323, 15);
+            this.cebIsShow.Name = "cebIsShow";
+            this.cebIsShow.Size = new System.Drawing.Size(158, 19);
+            this.cebIsShow.TabIndex = 4;
+            this.cebIsShow.Text = "Показать соотнесенные";
+            this.cebIsShow.UseVisualStyleBackColor = true;
+            // 
             // dgvData
             // 
             this.dgvData.AllowUserToAddRows = false;
@@ -519,7 +532,7 @@
             this.dgvData.ReadOnly = true;
             this.dgvData.RowHeadersVisible = false;
             this.dgvData.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvData.Size = new System.Drawing.Size(1246, 192);
+            this.dgvData.Size = new System.Drawing.Size(1246, 205);
             this.dgvData.TabIndex = 29;
             this.dgvData.VirtualMode = true;
             // 
@@ -553,7 +566,7 @@
             this.dgvNapr.ReadOnly = true;
             this.dgvNapr.RowHeadersVisible = false;
             this.dgvNapr.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvNapr.Size = new System.Drawing.Size(518, 203);
+            this.dgvNapr.Size = new System.Drawing.Size(518, 218);
             this.dgvNapr.TabIndex = 30;
             this.dgvNapr.VirtualMode = true;
             // 
@@ -617,7 +630,7 @@
         private System.Windows.Forms.ToolStripMenuItem tsmImportKmis;
         private System.Windows.Forms.ToolStripMenuItem tsmImportNapr;
         private System.Windows.Forms.ToolStripMenuItem логToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem выгрузитьСписокНаправленийToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem tsmExportNapr;
         private DataGridViewEx dgvData;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator4;
         private System.Windows.Forms.ToolStripButton tsbDelete;
@@ -642,6 +655,7 @@
         private System.Windows.Forms.DateTimePicker dtpDateIn;
         private System.Windows.Forms.Label lDateOut;
         private System.Windows.Forms.Label lDateIn;
+        private System.Windows.Forms.CheckBox cebIsShow;
     }
 }
 

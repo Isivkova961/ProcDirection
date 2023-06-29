@@ -152,10 +152,11 @@ namespace ProcDirection
             {
                 if (naprs.Any(x => x.fio_d.ToLower() == kmisNapr.fio_d.ToLower()))
                 {
+                    if (cebIsShow.Checked) kmisNaprs1.Add(kmisNapr);
                 }
                 else
                 {
-                    kmisNaprs1.Add(kmisNapr);
+                    if (!cebIsShow.Checked) kmisNaprs1.Add(kmisNapr);
                 }
             }
             dgvData.DataSource = kmisNaprs1;
@@ -166,10 +167,11 @@ namespace ProcDirection
             {
                 if (kmisNaprs.Any(x => x.fio_d.ToLower() == napr.fio_d.ToLower()))
                 {
+                    if (cebIsShow.Checked) naprs1.Add(napr);
                 }
                 else
                 {
-                    naprs1.Add(napr);
+                    if (!cebIsShow.Checked) naprs1.Add(napr);
                 }
             }
 
@@ -285,6 +287,34 @@ namespace ProcDirection
                 row.Cells["fio_d"].Value.ToString() + ".jpg";
                 File.Delete(path);
             }
+        }
+
+        private void tsmExportNapr_Click(object sender, EventArgs e)
+        {
+            var dialog = new SaveFileDialog();
+            if (dialog.ShowDialog() == DialogResult.Cancel) return;
+            FileInfo fi = new FileInfo(dialog.FileName);
+            foreach (DataGridViewRow row in dgvNapr.Rows)
+            {
+                var path1 = fi.DirectoryName + @"\" + row.Cells["fio_d"].Value.ToString() + ".jpg";
+                var path = row.Cells["path"].Value.ToString() + @"\" +
+                row.Cells["fio_d"].Value.ToString() + ".jpg";
+                File.Move(path, path1);
+            }
+            MessageBox.Show(@"Данные направления перенесены");
+            var pathDir = dgvNapr.CurrentRow.Cells["path"].Value.ToString();
+            var arr = Directory.GetFiles(pathDir);
+            naprs = (from s in arr
+                     let str = pathDir
+                     select s.Replace(str + "\\", "")
+                into data1
+                     select data1.Replace(".jpg", "")
+                into data1
+                     select data1.Replace(".JPG", "")
+                into data1
+                     select new Napr(data1, pathDir)).ToList();
+            dgvNapr.DataSource = naprs;
+            tsbKolNapr.Text = "Кол-во:" + naprs.Count.ToString();
         }
     }
 }
