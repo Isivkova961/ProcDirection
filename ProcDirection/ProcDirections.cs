@@ -79,8 +79,8 @@ namespace ProcDirection
             FileInfo fi = new FileInfo(openDialog.FileName);
             var path = fi.DirectoryName;
             var arr = Directory.GetFiles(path);
-            naprs = (from s in arr
-                        let str = path
+            naprs = (from s in arr.Where(x => x != path + "\\Thumbs.db")
+                     let str = path
                         select s.Replace(str + "\\", "")
                 into data1
                         select data1.Replace(".jpg", "")
