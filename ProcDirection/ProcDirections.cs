@@ -96,8 +96,10 @@ namespace ProcDirection
         {
             var path = dgvNapr.CurrentRow.Cells["path"].Value.ToString() + @"\" +
                        dgvNapr.CurrentRow.Cells["fio_d"].Value.ToString() + ".jpg";
-            image = Image.FromFile(path);
+            FileStream fs = new FileStream(path, FileMode.Open);
+            image = Image.FromStream(fs);
             pbNapr.Image = image;
+            fs.Close();
         }
 
         private void tsbLeft_Click(object sender, EventArgs e)
@@ -192,21 +194,20 @@ namespace ProcDirection
                        dgvNapr.CurrentRow.Cells["fio_d"].Value.ToString() + ".jpg";
             var pathNew = dgvNapr.CurrentRow.Cells["path"].Value.ToString() + @"\" +
                        newName + ".jpg";
-            
             try
             {
                 File.Move(path, pathNew);
 
                 if (!File.Exists(path))
                 {
-                    Console.WriteLine("File successfully renamed.");
+                    MessageBox.Show("Файл успешно переименован");
                 }
                 naprs.FirstOrDefault(x => x.fio_d == dgvNapr.CurrentRow.Cells["fio_d"].Value.ToString()).fio_d = newName;
                 Correlate();
             }
             catch (IOException es)
             {
-                Console.WriteLine("The renaming failed: {0}", es.ToString());
+                MessageBox.Show(es.ToString());
             }
             
         }
@@ -281,12 +282,10 @@ namespace ProcDirection
 
         private void tsbDelete_Click(object sender, EventArgs e)
         {
-            foreach (DataGridViewRow row in dgvNapr.Rows)
-            {
-                var path = row.Cells["path"].Value.ToString() + @"\" +
-                row.Cells["fio_d"].Value.ToString() + ".jpg";
+                var path = dgvNapr.CurrentRow.Cells["path"].Value.ToString() + @"\" +
+                dgvNapr.CurrentRow.Cells["fio_d"].Value.ToString() + ".jpg";
                 File.Delete(path);
-            }
+                Correlate();
         }
 
         private void tsmExportNapr_Click(object sender, EventArgs e)
@@ -315,6 +314,17 @@ namespace ProcDirection
                      select new Napr(data1, pathDir)).ToList();
             dgvNapr.DataSource = naprs;
             tsbKolNapr.Text = "Кол-во:" + naprs.Count.ToString();
+        }
+
+        private void tsbDeleteAll_Click(object sender, EventArgs e)
+        {
+            foreach (DataGridViewRow row in dgvNapr.Rows)
+            {
+                var path = row.Cells["path"].Value.ToString() + @"\" +
+                row.Cells["fio_d"].Value.ToString() + ".jpg";
+                File.Delete(path);
+            }
+            Correlate();
         }
     }
 }

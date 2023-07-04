@@ -42,6 +42,7 @@
             this.логToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmExportNapr = new System.Windows.Forms.ToolStripMenuItem();
             this.pFiltr = new System.Windows.Forms.Panel();
+            this.cebIsShow = new System.Windows.Forms.CheckBox();
             this.dtpDateOut = new System.Windows.Forms.DateTimePicker();
             this.dtpDateIn = new System.Windows.Forms.DateTimePicker();
             this.lDateOut = new System.Windows.Forms.Label();
@@ -71,7 +72,7 @@
             this.tsbLeft = new System.Windows.Forms.ToolStripButton();
             this.tsbZoom = new System.Windows.Forms.ToolStripButton();
             this.tsbKolNapr = new System.Windows.Forms.ToolStripLabel();
-            this.cebIsShow = new System.Windows.Forms.CheckBox();
+            this.tsbDeleteAll = new System.Windows.Forms.ToolStripButton();
             this.dgvData = new ProcDirection.DataGridViewEx();
             this.dgvNapr = new ProcDirection.DataGridViewEx();
             this.ssStatus.SuspendLayout();
@@ -170,6 +171,16 @@
             this.pFiltr.Name = "pFiltr";
             this.pFiltr.Size = new System.Drawing.Size(1246, 72);
             this.pFiltr.TabIndex = 27;
+            // 
+            // cebIsShow
+            // 
+            this.cebIsShow.AutoSize = true;
+            this.cebIsShow.Location = new System.Drawing.Point(323, 15);
+            this.cebIsShow.Name = "cebIsShow";
+            this.cebIsShow.Size = new System.Drawing.Size(158, 19);
+            this.cebIsShow.TabIndex = 4;
+            this.cebIsShow.Text = "Показать соотнесенные";
+            this.cebIsShow.UseVisualStyleBackColor = true;
             // 
             // dtpDateOut
             // 
@@ -361,6 +372,7 @@
             this.tsbShowImage,
             this.toolStripSeparator3,
             this.tsbDelete,
+            this.tsbDeleteAll,
             this.toolStripSeparator4,
             this.tsbRigth,
             this.tsbLeft,
@@ -492,15 +504,17 @@
             this.tsbKolNapr.Size = new System.Drawing.Size(46, 45);
             this.tsbKolNapr.Text = "Кол-во";
             // 
-            // cebIsShow
+            // tsbDeleteAll
             // 
-            this.cebIsShow.AutoSize = true;
-            this.cebIsShow.Location = new System.Drawing.Point(323, 15);
-            this.cebIsShow.Name = "cebIsShow";
-            this.cebIsShow.Size = new System.Drawing.Size(158, 19);
-            this.cebIsShow.TabIndex = 4;
-            this.cebIsShow.Text = "Показать соотнесенные";
-            this.cebIsShow.UseVisualStyleBackColor = true;
+            this.tsbDeleteAll.AutoSize = false;
+            this.tsbDeleteAll.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.tsbDeleteAll.Image = ((System.Drawing.Image)(resources.GetObject("tsbDeleteAll.Image")));
+            this.tsbDeleteAll.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.tsbDeleteAll.ImageTransparentColor = System.Drawing.Color.White;
+            this.tsbDeleteAll.Name = "tsbDeleteAll";
+            this.tsbDeleteAll.Size = new System.Drawing.Size(35, 35);
+            this.tsbDeleteAll.Text = "Удалить все";
+            this.tsbDeleteAll.Click += new System.EventHandler(this.tsbDeleteAll_Click);
             // 
             // dgvData
             // 
@@ -581,6 +595,7 @@
             this.Controls.Add(this.msMenu);
             this.Controls.Add(this.ssStatus);
             this.Font = new System.Drawing.Font("Times New Roman", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.KeyPreview = true;
             this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "fProcDirections";
@@ -656,6 +671,7 @@
         private System.Windows.Forms.Label lDateOut;
         private System.Windows.Forms.Label lDateIn;
         private System.Windows.Forms.CheckBox cebIsShow;
+        private System.Windows.Forms.ToolStripButton tsbDeleteAll;
     }
 }
 
