@@ -26,6 +26,7 @@ namespace ProcDirection
         private string _filterFile;
         public string nameXmlBegin = "NGM430074T43_";
         public bool isTable = false;
+        public static string folderPath = @"c:\doc\temp\";
 
         public BindingList<KmisNapr> kmisNaprs = new BindingList<KmisNapr>();
         public List<Napr> naprs = new List<Napr>();  
@@ -904,6 +905,54 @@ namespace ProcDirection
             catch (Exception ex)
             {
                 TempValue.GetMessageError(ex.Message);
+            }
+        }
+
+        private void обработатьОтчетыСчетовToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            RenameFiles();
+        }
+
+        static void RenameFiles()
+        {
+            string[] folders = Directory.GetDirectories(folderPath);
+            //создаем папки со страховыми, куда будем перемещать итоговые папки
+            string[] nameDirectory = new string[6] { "Общая", "ФОМС", "СОГАЗ", "Макс М", "Ингострах", "Капитал" };
+            foreach (var name in nameDirectory)
+            {
+                NewDirectory(name);
+            }
+
+            foreach (string folder in folders)
+            {
+                string[] files = Directory.GetFiles(folder);
+
+                foreach (string file in files)
+                {
+                    string fileName = Path.GetFileName(file);
+                    string folderName = new DirectoryInfo(folder).Name;
+                    folderName = fileName.Replace("-страницы", "");
+                    for (var i = 0; i < 6; i++)
+                    {
+                        if (folderName.IndexOf("-" + (i + 1)) > -1)
+                        {
+                            File.Move(file, Path.Combine(folderPath + nameDirectory[i], folderName));
+                            break;
+                        }
+                    }
+                }
+                Directory.Delete(folder, true);
+            }
+
+
+        }
+
+        static void NewDirectory(string name)
+        {
+            //создаем папки со страховыми, куда будем перемещать итоговые папки
+            if (!Directory.Exists(folderPath + name))
+            {
+                Directory.CreateDirectory(folderPath + name);
             }
         }
     }

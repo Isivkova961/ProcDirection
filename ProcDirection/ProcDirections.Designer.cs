@@ -85,6 +85,7 @@
             this.tsbImportNapr = new System.Windows.Forms.ToolStripButton();
             this.tsbCorrelatePath = new System.Windows.Forms.ToolStripButton();
             this.tsbShowImage = new System.Windows.Forms.ToolStripButton();
+            this.tsbEditNameFile = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
             this.tsbDelete = new System.Windows.Forms.ToolStripButton();
             this.tsbDeleteAll = new System.Windows.Forms.ToolStripButton();
@@ -95,7 +96,7 @@
             this.tsbKolNapr = new System.Windows.Forms.ToolStripLabel();
             this.tsbRename = new System.Windows.Forms.ToolStripButton();
             this.tstbRename = new System.Windows.Forms.ToolStripTextBox();
-            this.tsbEditNameFile = new System.Windows.Forms.ToolStripButton();
+            this.обработатьОтчетыСчетовToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.ssStatus.SuspendLayout();
             this.msMenu.SuspendLayout();
             this.pFiltr.SuspendLayout();
@@ -137,7 +138,8 @@
             this.msMenu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.справочникОрганизацийToolStripMenuItem,
             this.логToolStripMenuItem,
-            this.tsmExportNapr});
+            this.tsmExportNapr,
+            this.обработатьОтчетыСчетовToolStripMenuItem});
             this.msMenu.Location = new System.Drawing.Point(0, 0);
             this.msMenu.Name = "msMenu";
             this.msMenu.Size = new System.Drawing.Size(1246, 24);
@@ -735,6 +737,18 @@
             this.tsbShowImage.Text = "Показать изображение";
             this.tsbShowImage.Click += new System.EventHandler(this.tsbShowImage_Click);
             // 
+            // tsbEditNameFile
+            // 
+            this.tsbEditNameFile.AutoSize = false;
+            this.tsbEditNameFile.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.tsbEditNameFile.Image = ((System.Drawing.Image)(resources.GetObject("tsbEditNameFile.Image")));
+            this.tsbEditNameFile.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.tsbEditNameFile.ImageTransparentColor = System.Drawing.Color.White;
+            this.tsbEditNameFile.Name = "tsbEditNameFile";
+            this.tsbEditNameFile.Size = new System.Drawing.Size(35, 35);
+            this.tsbEditNameFile.Text = "Привести файлы к нужному формату";
+            this.tsbEditNameFile.Click += new System.EventHandler(this.tsbEditNameFile_Click);
+            // 
             // toolStripSeparator3
             // 
             this.toolStripSeparator3.Name = "toolStripSeparator3";
@@ -831,17 +845,12 @@
             this.tstbRename.Name = "tstbRename";
             this.tstbRename.Size = new System.Drawing.Size(100, 48);
             // 
-            // tsbEditNameFile
+            // обработатьОтчетыСчетовToolStripMenuItem
             // 
-            this.tsbEditNameFile.AutoSize = false;
-            this.tsbEditNameFile.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.tsbEditNameFile.Image = ((System.Drawing.Image)(resources.GetObject("tsbEditNameFile.Image")));
-            this.tsbEditNameFile.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
-            this.tsbEditNameFile.ImageTransparentColor = System.Drawing.Color.White;
-            this.tsbEditNameFile.Name = "tsbEditNameFile";
-            this.tsbEditNameFile.Size = new System.Drawing.Size(35, 35);
-            this.tsbEditNameFile.Text = "Привести файлы к нужному формату";
-            this.tsbEditNameFile.Click += new System.EventHandler(this.tsbEditNameFile_Click);
+            this.обработатьОтчетыСчетовToolStripMenuItem.Name = "обработатьОтчетыСчетовToolStripMenuItem";
+            this.обработатьОтчетыСчетовToolStripMenuItem.Size = new System.Drawing.Size(166, 20);
+            this.обработатьОтчетыСчетовToolStripMenuItem.Text = "Обработать отчеты счетов";
+            this.обработатьОтчетыСчетовToolStripMenuItem.Click += new System.EventHandler(this.обработатьОтчетыСчетовToolStripMenuItem_Click);
             // 
             // fProcDirections
             // 
@@ -952,6 +961,7 @@
         private System.Windows.Forms.CheckBox cebVMP;
         private System.Windows.Forms.CheckBox cebExtr;
         private System.Windows.Forms.ToolStripButton tsbEditNameFile;
+        private System.Windows.Forms.ToolStripMenuItem обработатьОтчетыСчетовToolStripMenuItem;
     }
 }
 
