@@ -28,9 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(fProcDirections));
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(fProcDirections));
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             this.ssStatus = new System.Windows.Forms.StatusStrip();
@@ -42,12 +42,22 @@
             this.логToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmExportNapr = new System.Windows.Forms.ToolStripMenuItem();
             this.pFiltr = new System.Windows.Forms.Panel();
+            this.cebError = new System.Windows.Forms.CheckBox();
+            this.cebPlanInog = new System.Windows.Forms.CheckBox();
+            this.cebPlanKirov = new System.Windows.Forms.CheckBox();
+            this.cebVMP = new System.Windows.Forms.CheckBox();
+            this.cebExtr = new System.Windows.Forms.CheckBox();
+            this.cebNumberReestr = new System.Windows.Forms.CheckBox();
+            this.tbNumerReestr = new System.Windows.Forms.TextBox();
+            this.cebStatus = new System.Windows.Forms.CheckBox();
+            this.cobStatus = new System.Windows.Forms.ComboBox();
             this.cebIsShow = new System.Windows.Forms.CheckBox();
             this.dtpDateOut = new System.Windows.Forms.DateTimePicker();
             this.dtpDateIn = new System.Windows.Forms.DateTimePicker();
             this.lDateOut = new System.Windows.Forms.Label();
             this.lDateIn = new System.Windows.Forms.Label();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
+            this.dgvData = new ProcDirection.DataGridViewEx();
             this.tsViewPanel = new System.Windows.Forms.ToolStrip();
             this.tsnRefresh = new System.Windows.Forms.ToolStripButton();
             this.sebRefreshGridItem = new System.Windows.Forms.ToolStripSeparator();
@@ -56,7 +66,17 @@
             this.tsbCorrelate = new System.Windows.Forms.ToolStripButton();
             this.tsbExportList = new System.Windows.Forms.ToolStripButton();
             this.tsbKolKmis = new System.Windows.Forms.ToolStripLabel();
+            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
+            this.tsbRefreshNaprReestr = new System.Windows.Forms.ToolStripButton();
+            this.tsLoadReestrNapr = new System.Windows.Forms.ToolStripButton();
+            this.tsbCollect2 = new System.Windows.Forms.ToolStripButton();
+            this.tsbDrop = new System.Windows.Forms.ToolStripButton();
+            this.tsbExportXml = new System.Windows.Forms.ToolStripButton();
+            this.tsbEditStatus = new System.Windows.Forms.ToolStripButton();
+            this.tscobStatus = new System.Windows.Forms.ToolStripComboBox();
+            this.tsbEditLoad = new System.Windows.Forms.ToolStripButton();
             this.splitContainer2 = new System.Windows.Forms.SplitContainer();
+            this.dgvNapr = new ProcDirection.DataGridViewEx();
             this.pbNapr = new System.Windows.Forms.PictureBox();
             this.panel1 = new System.Windows.Forms.Panel();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
@@ -67,14 +87,15 @@
             this.tsbShowImage = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
             this.tsbDelete = new System.Windows.Forms.ToolStripButton();
+            this.tsbDeleteAll = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator4 = new System.Windows.Forms.ToolStripSeparator();
             this.tsbRigth = new System.Windows.Forms.ToolStripButton();
             this.tsbLeft = new System.Windows.Forms.ToolStripButton();
             this.tsbZoom = new System.Windows.Forms.ToolStripButton();
             this.tsbKolNapr = new System.Windows.Forms.ToolStripLabel();
-            this.tsbDeleteAll = new System.Windows.Forms.ToolStripButton();
-            this.dgvData = new ProcDirection.DataGridViewEx();
-            this.dgvNapr = new ProcDirection.DataGridViewEx();
+            this.tsbRename = new System.Windows.Forms.ToolStripButton();
+            this.tstbRename = new System.Windows.Forms.ToolStripTextBox();
+            this.tsbEditNameFile = new System.Windows.Forms.ToolStripButton();
             this.ssStatus.SuspendLayout();
             this.msMenu.SuspendLayout();
             this.pFiltr.SuspendLayout();
@@ -82,15 +103,15 @@
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
             this.splitContainer1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvData)).BeginInit();
             this.tsViewPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer2)).BeginInit();
             this.splitContainer2.Panel1.SuspendLayout();
             this.splitContainer2.Panel2.SuspendLayout();
             this.splitContainer2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvNapr)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbNapr)).BeginInit();
             this.toolStrip1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvData)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvNapr)).BeginInit();
             this.SuspendLayout();
             // 
             // ssStatus
@@ -161,6 +182,15 @@
             // 
             // pFiltr
             // 
+            this.pFiltr.Controls.Add(this.cebError);
+            this.pFiltr.Controls.Add(this.cebPlanInog);
+            this.pFiltr.Controls.Add(this.cebPlanKirov);
+            this.pFiltr.Controls.Add(this.cebVMP);
+            this.pFiltr.Controls.Add(this.cebExtr);
+            this.pFiltr.Controls.Add(this.cebNumberReestr);
+            this.pFiltr.Controls.Add(this.tbNumerReestr);
+            this.pFiltr.Controls.Add(this.cebStatus);
+            this.pFiltr.Controls.Add(this.cobStatus);
             this.pFiltr.Controls.Add(this.cebIsShow);
             this.pFiltr.Controls.Add(this.dtpDateOut);
             this.pFiltr.Controls.Add(this.dtpDateIn);
@@ -171,6 +201,101 @@
             this.pFiltr.Name = "pFiltr";
             this.pFiltr.Size = new System.Drawing.Size(1246, 72);
             this.pFiltr.TabIndex = 27;
+            // 
+            // cebError
+            // 
+            this.cebError.AutoSize = true;
+            this.cebError.Location = new System.Drawing.Point(982, 14);
+            this.cebError.Name = "cebError";
+            this.cebError.Size = new System.Drawing.Size(96, 19);
+            this.cebError.TabIndex = 21;
+            this.cebError.Text = "С ошибками";
+            this.cebError.UseVisualStyleBackColor = true;
+            this.cebError.CheckedChanged += new System.EventHandler(this.cebError_CheckedChanged);
+            // 
+            // cebPlanInog
+            // 
+            this.cebPlanInog.AutoSize = true;
+            this.cebPlanInog.Location = new System.Drawing.Point(830, 40);
+            this.cebPlanInog.Name = "cebPlanInog";
+            this.cebPlanInog.Size = new System.Drawing.Size(158, 19);
+            this.cebPlanInog.TabIndex = 20;
+            this.cebPlanInog.Text = "Плановые иногородние";
+            this.cebPlanInog.UseVisualStyleBackColor = true;
+            this.cebPlanInog.CheckedChanged += new System.EventHandler(this.cebPlanInog_CheckedChanged);
+            // 
+            // cebPlanKirov
+            // 
+            this.cebPlanKirov.AutoSize = true;
+            this.cebPlanKirov.Location = new System.Drawing.Point(831, 15);
+            this.cebPlanKirov.Name = "cebPlanKirov";
+            this.cebPlanKirov.Size = new System.Drawing.Size(120, 19);
+            this.cebPlanKirov.TabIndex = 19;
+            this.cebPlanKirov.Text = "Плановые Киров";
+            this.cebPlanKirov.UseVisualStyleBackColor = true;
+            this.cebPlanKirov.CheckedChanged += new System.EventHandler(this.cebPlanKirov_CheckedChanged);
+            // 
+            // cebVMP
+            // 
+            this.cebVMP.AutoSize = true;
+            this.cebVMP.Location = new System.Drawing.Point(725, 43);
+            this.cebVMP.Name = "cebVMP";
+            this.cebVMP.Size = new System.Drawing.Size(55, 19);
+            this.cebVMP.TabIndex = 18;
+            this.cebVMP.Text = "ВМП";
+            this.cebVMP.UseVisualStyleBackColor = true;
+            this.cebVMP.CheckedChanged += new System.EventHandler(this.cebVMP_CheckedChanged);
+            // 
+            // cebExtr
+            // 
+            this.cebExtr.AutoSize = true;
+            this.cebExtr.Location = new System.Drawing.Point(585, 41);
+            this.cebExtr.Name = "cebExtr";
+            this.cebExtr.Size = new System.Drawing.Size(94, 19);
+            this.cebExtr.TabIndex = 17;
+            this.cebExtr.Text = "Экстренные";
+            this.cebExtr.UseVisualStyleBackColor = true;
+            this.cebExtr.CheckedChanged += new System.EventHandler(this.cebExtr_CheckedChanged);
+            // 
+            // cebNumberReestr
+            // 
+            this.cebNumberReestr.AutoSize = true;
+            this.cebNumberReestr.Location = new System.Drawing.Point(585, 17);
+            this.cebNumberReestr.Name = "cebNumberReestr";
+            this.cebNumberReestr.Size = new System.Drawing.Size(134, 19);
+            this.cebNumberReestr.TabIndex = 16;
+            this.cebNumberReestr.Text = "По номеру реестра";
+            this.cebNumberReestr.UseVisualStyleBackColor = true;
+            this.cebNumberReestr.CheckedChanged += new System.EventHandler(this.checkBox1_CheckedChanged_1);
+            // 
+            // tbNumerReestr
+            // 
+            this.tbNumerReestr.Location = new System.Drawing.Point(725, 14);
+            this.tbNumerReestr.Name = "tbNumerReestr";
+            this.tbNumerReestr.Size = new System.Drawing.Size(100, 22);
+            this.tbNumerReestr.TabIndex = 7;
+            // 
+            // cebStatus
+            // 
+            this.cebStatus.AutoSize = true;
+            this.cebStatus.Location = new System.Drawing.Point(323, 40);
+            this.cebStatus.Name = "cebStatus";
+            this.cebStatus.Size = new System.Drawing.Size(130, 19);
+            this.cebStatus.TabIndex = 6;
+            this.cebStatus.Text = "Сортировка статус";
+            this.cebStatus.UseVisualStyleBackColor = true;
+            // 
+            // cobStatus
+            // 
+            this.cobStatus.FormattingEnabled = true;
+            this.cobStatus.Items.AddRange(new object[] {
+            "ok",
+            "error",
+            ""});
+            this.cobStatus.Location = new System.Drawing.Point(459, 37);
+            this.cobStatus.Name = "cobStatus";
+            this.cobStatus.Size = new System.Drawing.Size(121, 23);
+            this.cobStatus.TabIndex = 5;
             // 
             // cebIsShow
             // 
@@ -236,6 +361,40 @@
             this.splitContainer1.SplitterDistance = 253;
             this.splitContainer1.TabIndex = 28;
             // 
+            // dgvData
+            // 
+            this.dgvData.AllowUserToAddRows = false;
+            this.dgvData.AllowUserToDeleteRows = false;
+            this.dgvData.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dgvData.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
+            this.dgvData.BackgroundColor = System.Drawing.SystemColors.GradientInactiveCaption;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Times New Roman", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvData.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            this.dgvData.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Times New Roman", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgvData.DefaultCellStyle = dataGridViewCellStyle2;
+            this.dgvData.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dgvData.Location = new System.Drawing.Point(0, 48);
+            this.dgvData.Name = "dgvData";
+            this.dgvData.ReadOnly = true;
+            this.dgvData.RowHeadersVisible = false;
+            this.dgvData.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dgvData.Size = new System.Drawing.Size(1246, 205);
+            this.dgvData.TabIndex = 29;
+            this.dgvData.VirtualMode = true;
+            // 
             // tsViewPanel
             // 
             this.tsViewPanel.AutoSize = false;
@@ -247,7 +406,16 @@
             this.tsbImport,
             this.tsbCorrelate,
             this.tsbExportList,
-            this.tsbKolKmis});
+            this.tsbKolKmis,
+            this.toolStripSeparator1,
+            this.tsbRefreshNaprReestr,
+            this.tsLoadReestrNapr,
+            this.tsbCollect2,
+            this.tsbDrop,
+            this.tsbExportXml,
+            this.tsbEditStatus,
+            this.tscobStatus,
+            this.tsbEditLoad});
             this.tsViewPanel.Location = new System.Drawing.Point(0, 0);
             this.tsViewPanel.Name = "tsViewPanel";
             this.tsViewPanel.Size = new System.Drawing.Size(1246, 48);
@@ -325,6 +493,99 @@
             this.tsbKolKmis.Size = new System.Drawing.Size(46, 45);
             this.tsbKolKmis.Text = "Кол-во";
             // 
+            // toolStripSeparator1
+            // 
+            this.toolStripSeparator1.Name = "toolStripSeparator1";
+            this.toolStripSeparator1.Size = new System.Drawing.Size(6, 48);
+            // 
+            // tsbRefreshNaprReestr
+            // 
+            this.tsbRefreshNaprReestr.AutoSize = false;
+            this.tsbRefreshNaprReestr.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.tsbRefreshNaprReestr.Image = ((System.Drawing.Image)(resources.GetObject("tsbRefreshNaprReestr.Image")));
+            this.tsbRefreshNaprReestr.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.tsbRefreshNaprReestr.ImageTransparentColor = System.Drawing.Color.White;
+            this.tsbRefreshNaprReestr.Name = "tsbRefreshNaprReestr";
+            this.tsbRefreshNaprReestr.Size = new System.Drawing.Size(35, 35);
+            this.tsbRefreshNaprReestr.Text = "Обновить";
+            this.tsbRefreshNaprReestr.Click += new System.EventHandler(this.tsbRefreshNaprReestr_Click);
+            // 
+            // tsLoadReestrNapr
+            // 
+            this.tsLoadReestrNapr.AutoSize = false;
+            this.tsLoadReestrNapr.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.tsLoadReestrNapr.Image = ((System.Drawing.Image)(resources.GetObject("tsLoadReestrNapr.Image")));
+            this.tsLoadReestrNapr.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.tsLoadReestrNapr.ImageTransparentColor = System.Drawing.Color.White;
+            this.tsLoadReestrNapr.Name = "tsLoadReestrNapr";
+            this.tsLoadReestrNapr.Size = new System.Drawing.Size(35, 35);
+            this.tsLoadReestrNapr.Text = "Выгрузить из БД";
+            this.tsLoadReestrNapr.Click += new System.EventHandler(this.tsLoadReestrNapr_Click);
+            // 
+            // tsbCollect2
+            // 
+            this.tsbCollect2.AutoSize = false;
+            this.tsbCollect2.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.tsbCollect2.Image = ((System.Drawing.Image)(resources.GetObject("tsbCollect2.Image")));
+            this.tsbCollect2.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.tsbCollect2.ImageTransparentColor = System.Drawing.Color.White;
+            this.tsbCollect2.Name = "tsbCollect2";
+            this.tsbCollect2.Size = new System.Drawing.Size(35, 35);
+            this.tsbCollect2.Text = "Сравнить";
+            this.tsbCollect2.Click += new System.EventHandler(this.tsbCollect2_Click);
+            // 
+            // tsbDrop
+            // 
+            this.tsbDrop.AutoSize = false;
+            this.tsbDrop.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.tsbDrop.Image = ((System.Drawing.Image)(resources.GetObject("tsbDrop.Image")));
+            this.tsbDrop.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.tsbDrop.ImageTransparentColor = System.Drawing.Color.White;
+            this.tsbDrop.Name = "tsbDrop";
+            this.tsbDrop.Size = new System.Drawing.Size(35, 35);
+            this.tsbDrop.Text = "Удалить таблицу с направлениями";
+            this.tsbDrop.Click += new System.EventHandler(this.tsbDrop_Click);
+            // 
+            // tsbExportXml
+            // 
+            this.tsbExportXml.AutoSize = false;
+            this.tsbExportXml.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.tsbExportXml.Image = ((System.Drawing.Image)(resources.GetObject("tsbExportXml.Image")));
+            this.tsbExportXml.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.tsbExportXml.ImageTransparentColor = System.Drawing.Color.White;
+            this.tsbExportXml.Name = "tsbExportXml";
+            this.tsbExportXml.Size = new System.Drawing.Size(35, 35);
+            this.tsbExportXml.Text = "Выгрузить в эксель";
+            this.tsbExportXml.Click += new System.EventHandler(this.tsbExportXml_Click);
+            // 
+            // tsbEditStatus
+            // 
+            this.tsbEditStatus.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.tsbEditStatus.Image = ((System.Drawing.Image)(resources.GetObject("tsbEditStatus.Image")));
+            this.tsbEditStatus.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tsbEditStatus.Name = "tsbEditStatus";
+            this.tsbEditStatus.Size = new System.Drawing.Size(103, 45);
+            this.tsbEditStatus.Text = "Поменять статус";
+            this.tsbEditStatus.Click += new System.EventHandler(this.tsbEditStatus_Click);
+            // 
+            // tscobStatus
+            // 
+            this.tscobStatus.Items.AddRange(new object[] {
+            "Ok",
+            "Error"});
+            this.tscobStatus.Name = "tscobStatus";
+            this.tscobStatus.Size = new System.Drawing.Size(121, 48);
+            // 
+            // tsbEditLoad
+            // 
+            this.tsbEditLoad.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.tsbEditLoad.Image = ((System.Drawing.Image)(resources.GetObject("tsbEditLoad.Image")));
+            this.tsbEditLoad.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tsbEditLoad.Name = "tsbEditLoad";
+            this.tsbEditLoad.Size = new System.Drawing.Size(102, 45);
+            this.tsbEditLoad.Text = "Изменить isLoad";
+            this.tsbEditLoad.Click += new System.EventHandler(this.tsbEditLoad_Click);
+            // 
             // splitContainer2
             // 
             this.splitContainer2.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -343,6 +604,40 @@
             this.splitContainer2.Size = new System.Drawing.Size(1246, 218);
             this.splitContainer2.SplitterDistance = 518;
             this.splitContainer2.TabIndex = 29;
+            // 
+            // dgvNapr
+            // 
+            this.dgvNapr.AllowUserToAddRows = false;
+            this.dgvNapr.AllowUserToDeleteRows = false;
+            this.dgvNapr.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dgvNapr.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
+            this.dgvNapr.BackgroundColor = System.Drawing.SystemColors.GradientInactiveCaption;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Times New Roman", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvNapr.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle3;
+            this.dgvNapr.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
+            dataGridViewCellStyle4.Font = new System.Drawing.Font("Times New Roman", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            dataGridViewCellStyle4.ForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgvNapr.DefaultCellStyle = dataGridViewCellStyle4;
+            this.dgvNapr.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dgvNapr.Location = new System.Drawing.Point(0, 0);
+            this.dgvNapr.Name = "dgvNapr";
+            this.dgvNapr.ReadOnly = true;
+            this.dgvNapr.RowHeadersVisible = false;
+            this.dgvNapr.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dgvNapr.Size = new System.Drawing.Size(518, 218);
+            this.dgvNapr.TabIndex = 30;
+            this.dgvNapr.VirtualMode = true;
             // 
             // pbNapr
             // 
@@ -370,6 +665,7 @@
             this.tsbImportNapr,
             this.tsbCorrelatePath,
             this.tsbShowImage,
+            this.tsbEditNameFile,
             this.toolStripSeparator3,
             this.tsbDelete,
             this.tsbDeleteAll,
@@ -377,7 +673,9 @@
             this.tsbRigth,
             this.tsbLeft,
             this.tsbZoom,
-            this.tsbKolNapr});
+            this.tsbKolNapr,
+            this.tsbRename,
+            this.tstbRename});
             this.toolStrip1.Location = new System.Drawing.Point(0, 0);
             this.toolStrip1.Name = "toolStrip1";
             this.toolStrip1.Size = new System.Drawing.Size(1246, 48);
@@ -454,6 +752,18 @@
             this.tsbDelete.Text = "Удалить";
             this.tsbDelete.Click += new System.EventHandler(this.tsbDelete_Click);
             // 
+            // tsbDeleteAll
+            // 
+            this.tsbDeleteAll.AutoSize = false;
+            this.tsbDeleteAll.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.tsbDeleteAll.Image = ((System.Drawing.Image)(resources.GetObject("tsbDeleteAll.Image")));
+            this.tsbDeleteAll.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.tsbDeleteAll.ImageTransparentColor = System.Drawing.Color.White;
+            this.tsbDeleteAll.Name = "tsbDeleteAll";
+            this.tsbDeleteAll.Size = new System.Drawing.Size(35, 35);
+            this.tsbDeleteAll.Text = "Удалить все";
+            this.tsbDeleteAll.Click += new System.EventHandler(this.tsbDeleteAll_Click);
+            // 
             // toolStripSeparator4
             // 
             this.toolStripSeparator4.Name = "toolStripSeparator4";
@@ -504,85 +814,34 @@
             this.tsbKolNapr.Size = new System.Drawing.Size(46, 45);
             this.tsbKolNapr.Text = "Кол-во";
             // 
-            // tsbDeleteAll
+            // tsbRename
             // 
-            this.tsbDeleteAll.AutoSize = false;
-            this.tsbDeleteAll.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.tsbDeleteAll.Image = ((System.Drawing.Image)(resources.GetObject("tsbDeleteAll.Image")));
-            this.tsbDeleteAll.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
-            this.tsbDeleteAll.ImageTransparentColor = System.Drawing.Color.White;
-            this.tsbDeleteAll.Name = "tsbDeleteAll";
-            this.tsbDeleteAll.Size = new System.Drawing.Size(35, 35);
-            this.tsbDeleteAll.Text = "Удалить все";
-            this.tsbDeleteAll.Click += new System.EventHandler(this.tsbDeleteAll_Click);
+            this.tsbRename.AutoSize = false;
+            this.tsbRename.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.tsbRename.Image = ((System.Drawing.Image)(resources.GetObject("tsbRename.Image")));
+            this.tsbRename.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.tsbRename.ImageTransparentColor = System.Drawing.Color.White;
+            this.tsbRename.Name = "tsbRename";
+            this.tsbRename.Size = new System.Drawing.Size(100, 35);
+            this.tsbRename.Text = "Переименовать";
+            this.tsbRename.Click += new System.EventHandler(this.tsbRename_Click);
             // 
-            // dgvData
+            // tstbRename
             // 
-            this.dgvData.AllowUserToAddRows = false;
-            this.dgvData.AllowUserToDeleteRows = false;
-            this.dgvData.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            this.dgvData.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
-            this.dgvData.BackgroundColor = System.Drawing.SystemColors.GradientInactiveCaption;
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Times New Roman", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvData.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
-            this.dgvData.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Times New Roman", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgvData.DefaultCellStyle = dataGridViewCellStyle2;
-            this.dgvData.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dgvData.Location = new System.Drawing.Point(0, 48);
-            this.dgvData.Name = "dgvData";
-            this.dgvData.ReadOnly = true;
-            this.dgvData.RowHeadersVisible = false;
-            this.dgvData.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvData.Size = new System.Drawing.Size(1246, 205);
-            this.dgvData.TabIndex = 29;
-            this.dgvData.VirtualMode = true;
+            this.tstbRename.Name = "tstbRename";
+            this.tstbRename.Size = new System.Drawing.Size(100, 48);
             // 
-            // dgvNapr
+            // tsbEditNameFile
             // 
-            this.dgvNapr.AllowUserToAddRows = false;
-            this.dgvNapr.AllowUserToDeleteRows = false;
-            this.dgvNapr.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            this.dgvNapr.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
-            this.dgvNapr.BackgroundColor = System.Drawing.SystemColors.GradientInactiveCaption;
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("Times New Roman", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvNapr.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle3;
-            this.dgvNapr.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
-            dataGridViewCellStyle4.Font = new System.Drawing.Font("Times New Roman", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            dataGridViewCellStyle4.ForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgvNapr.DefaultCellStyle = dataGridViewCellStyle4;
-            this.dgvNapr.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dgvNapr.Location = new System.Drawing.Point(0, 0);
-            this.dgvNapr.Name = "dgvNapr";
-            this.dgvNapr.ReadOnly = true;
-            this.dgvNapr.RowHeadersVisible = false;
-            this.dgvNapr.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvNapr.Size = new System.Drawing.Size(518, 218);
-            this.dgvNapr.TabIndex = 30;
-            this.dgvNapr.VirtualMode = true;
+            this.tsbEditNameFile.AutoSize = false;
+            this.tsbEditNameFile.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.tsbEditNameFile.Image = ((System.Drawing.Image)(resources.GetObject("tsbEditNameFile.Image")));
+            this.tsbEditNameFile.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.tsbEditNameFile.ImageTransparentColor = System.Drawing.Color.White;
+            this.tsbEditNameFile.Name = "tsbEditNameFile";
+            this.tsbEditNameFile.Size = new System.Drawing.Size(35, 35);
+            this.tsbEditNameFile.Text = "Привести файлы к нужному формату";
+            this.tsbEditNameFile.Click += new System.EventHandler(this.tsbEditNameFile_Click);
             // 
             // fProcDirections
             // 
@@ -612,17 +871,17 @@
             this.splitContainer1.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
             this.splitContainer1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.dgvData)).EndInit();
             this.tsViewPanel.ResumeLayout(false);
             this.tsViewPanel.PerformLayout();
             this.splitContainer2.Panel1.ResumeLayout(false);
             this.splitContainer2.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer2)).EndInit();
             this.splitContainer2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.dgvNapr)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbNapr)).EndInit();
             this.toolStrip1.ResumeLayout(false);
             this.toolStrip1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvData)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvNapr)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -672,6 +931,27 @@
         private System.Windows.Forms.Label lDateIn;
         private System.Windows.Forms.CheckBox cebIsShow;
         private System.Windows.Forms.ToolStripButton tsbDeleteAll;
+        private System.Windows.Forms.ToolStripButton tsbRename;
+        private System.Windows.Forms.ToolStripTextBox tstbRename;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
+        private System.Windows.Forms.ToolStripButton tsLoadReestrNapr;
+        private System.Windows.Forms.ToolStripButton tsbDrop;
+        private System.Windows.Forms.CheckBox cebStatus;
+        private System.Windows.Forms.ComboBox cobStatus;
+        private System.Windows.Forms.ToolStripButton tsbRefreshNaprReestr;
+        private System.Windows.Forms.ToolStripButton tsbExportXml;
+        private System.Windows.Forms.TextBox tbNumerReestr;
+        private System.Windows.Forms.ToolStripButton tsbCollect2;
+        private System.Windows.Forms.ToolStripButton tsbEditStatus;
+        private System.Windows.Forms.ToolStripComboBox tscobStatus;
+        private System.Windows.Forms.ToolStripButton tsbEditLoad;
+        private System.Windows.Forms.CheckBox cebNumberReestr;
+        private System.Windows.Forms.CheckBox cebError;
+        private System.Windows.Forms.CheckBox cebPlanInog;
+        private System.Windows.Forms.CheckBox cebPlanKirov;
+        private System.Windows.Forms.CheckBox cebVMP;
+        private System.Windows.Forms.CheckBox cebExtr;
+        private System.Windows.Forms.ToolStripButton tsbEditNameFile;
     }
 }
 

@@ -67,6 +67,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BaseClass.cs" />
+    <Compile Include="Entity\Auto\XmlData.cs" />
+    <Compile Include="Entity\Auto\NaprReestrKmis.cs" />
     <Compile Include="Entity\Auto\KmisNaprList.cs" />
     <Compile Include="Entity\Auto\KmisNapr.cs" />
     <Compile Include="Entity\Auto\Napr.cs" />
@@ -77,6 +79,7 @@
     <Compile Include="Entity\Grid\GridItem.cs" />
     <Compile Include="GridUtils.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Repository\Auto\NaprReestrListRepository.cs" />
     <Compile Include="Repository\Auto\ReestrRepository.cs" />
     <Compile Include="Repository\Auto\NaprRepository.cs" />
     <Compile Include="Repository\Auto\KmisNaprRepository.cs" />
