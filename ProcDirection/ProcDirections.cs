@@ -391,7 +391,7 @@ namespace ProcDirection
         {
             isTable = true;
             var _repoReestr = new NaprReestrListRepository();
-            var dsReestr = _repoReestr.List(dtpDateIn.Value, dtpDateOut.Value).ToArray();
+            var dsReestr = _repoReestr.List(dtpDateIn.Value.Date, dtpDateOut.Value.Date).ToArray();
             //dgvData.TuneColumns(dsReestr, "napr_reestr");
             foreach (var arr in dsReestr)
             {
@@ -443,6 +443,7 @@ namespace ProcDirection
                 };
                 naprReestr.Add(reestr);
             }
+            dgvData.DataSource = null;
             dgvData.DataSource = naprReestr;
             tsbKolKmis.Text = "Кол-во:" + naprReestr.Count.ToString();
         }
@@ -454,7 +455,7 @@ namespace ProcDirection
             _repoReestr.Drop().Exec();
         }
 
-        private void tsbRefreshNaprReestr_Click(object sender, EventArgs e)
+        private void RefreshNaprReestr()
         {
             isTable = true;
             var _repoReestr = new NaprReestrListRepository();
@@ -518,6 +519,11 @@ namespace ProcDirection
             tsbKolKmis.Text = "Кол-во:" + naprReestr.Count.ToString();
         }
 
+        private void tsbRefreshNaprReestr_Click(object sender, EventArgs e)
+        {
+            RefreshNaprReestr();
+        }
+
         public static XElement CreateXML(NaprReestrKmis person, string step)
         {
             var xml =  new XElement(
@@ -563,6 +569,8 @@ namespace ProcDirection
                 xml.Add(new XElement("ishod", person.ishod));
             }
             xml.Add(new XElement("plandlitgosp", person.plandlitgosp));
+            if (person.formpom == "3" && person.st_okato == "33000" && person.step == "1")
+                xml.Add(new XElement("napr_pdf", ConvertPdfBase64(person)));
             if (person.formpom == "3" && person.st_okato != "33000" && person.step == "2")
                 xml.Add(new XElement("napr_pdf", ConvertPdfBase64(person)));
             return xml;
@@ -620,7 +628,7 @@ namespace ProcDirection
 
             foreach (var napr in naprReestrs.OrderBy(x => x.reestr_id).ThenBy(x => x.name_xml).ThenBy(x => x.step).ThenBy(x => x.formpom))
             {
-                if (napr.st_okato != "33000" && napr.formpom == "3" && napr.pathPdf == null) continue;
+                if (napr.formpom == "3" && napr.pathPdf == null) continue;
                 if (dataXml.reestr_id == "")
                 {
                     dataXml.reestr_id = napr.reestr_id;
@@ -728,6 +736,8 @@ namespace ProcDirection
             }
             CreateXmlNapr(path);
             TempValue.GetMessageOk("Файлы выгружены");
+            RefreshNaprReestr();
+            CheckChanger();
         }
 
         private void checkBox1_CheckedChanged(object sender, EventArgs e)
@@ -744,7 +754,7 @@ namespace ProcDirection
         private void Correlate2()
         {
             var kmisNaprs1 = new List<NaprReestrKmis>();
-            foreach (var kmisNapr in naprReestr.Where(x=>x.st_okato != "33000" && x.formpom == "3").OrderBy(x=>x.fio_d))
+            foreach (var kmisNapr in naprReestr.Where(x=>x.formpom != "1").OrderBy(x=>x.fio_d))
             {
                 if (naprs.Any(x => x.fio_d.ToLower() == kmisNapr.fio_d.ToLower()))
                 {
