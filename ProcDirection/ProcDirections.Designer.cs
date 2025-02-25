@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(fProcDirections));
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
@@ -43,7 +44,7 @@
             this.tsmExportNapr = new System.Windows.Forms.ToolStripMenuItem();
             this.обработатьОтчетыСчетовToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.pFiltr = new System.Windows.Forms.Panel();
-            this.cebError = new System.Windows.Forms.CheckBox();
+            this.cebIsLoad = new System.Windows.Forms.CheckBox();
             this.cebPlanInog = new System.Windows.Forms.CheckBox();
             this.cebPlanKirov = new System.Windows.Forms.CheckBox();
             this.cebVMP = new System.Windows.Forms.CheckBox();
@@ -72,11 +73,10 @@
             this.tsbCollect2 = new System.Windows.Forms.ToolStripButton();
             this.tsbDrop = new System.Windows.Forms.ToolStripButton();
             this.tsbExportXml = new System.Windows.Forms.ToolStripButton();
-            this.tsbEditStatus = new System.Windows.Forms.ToolStripButton();
-            this.tscobStatus = new System.Windows.Forms.ToolStripComboBox();
+            this.tsbEditStep = new System.Windows.Forms.ToolStripButton();
+            this.tbStep = new System.Windows.Forms.ToolStripTextBox();
             this.tsbEditLoad = new System.Windows.Forms.ToolStripButton();
             this.splitContainer2 = new System.Windows.Forms.SplitContainer();
-            this.pbNapr = new System.Windows.Forms.PictureBox();
             this.panel1 = new System.Windows.Forms.Panel();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
             this.tbsResreshNapr = new System.Windows.Forms.ToolStripButton();
@@ -91,10 +91,10 @@
             this.toolStripSeparator4 = new System.Windows.Forms.ToolStripSeparator();
             this.tsbRigth = new System.Windows.Forms.ToolStripButton();
             this.tsbLeft = new System.Windows.Forms.ToolStripButton();
-            this.tsbZoom = new System.Windows.Forms.ToolStripButton();
             this.tsbKolNapr = new System.Windows.Forms.ToolStripLabel();
             this.tsbRename = new System.Windows.Forms.ToolStripButton();
             this.tstbRename = new System.Windows.Forms.ToolStripTextBox();
+            this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.dgvData = new ProcDirection.DataGridViewEx();
             this.dgvNapr = new ProcDirection.DataGridViewEx();
             this.ssStatus.SuspendLayout();
@@ -109,7 +109,6 @@
             this.splitContainer2.Panel1.SuspendLayout();
             this.splitContainer2.Panel2.SuspendLayout();
             this.splitContainer2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pbNapr)).BeginInit();
             this.toolStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvData)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvNapr)).BeginInit();
@@ -191,7 +190,7 @@
             // 
             // pFiltr
             // 
-            this.pFiltr.Controls.Add(this.cebError);
+            this.pFiltr.Controls.Add(this.cebIsLoad);
             this.pFiltr.Controls.Add(this.cebPlanInog);
             this.pFiltr.Controls.Add(this.cebPlanKirov);
             this.pFiltr.Controls.Add(this.cebVMP);
@@ -211,16 +210,16 @@
             this.pFiltr.Size = new System.Drawing.Size(1246, 72);
             this.pFiltr.TabIndex = 27;
             // 
-            // cebError
+            // cebIsLoad
             // 
-            this.cebError.AutoSize = true;
-            this.cebError.Location = new System.Drawing.Point(982, 14);
-            this.cebError.Name = "cebError";
-            this.cebError.Size = new System.Drawing.Size(96, 19);
-            this.cebError.TabIndex = 21;
-            this.cebError.Text = "С ошибками";
-            this.cebError.UseVisualStyleBackColor = true;
-            this.cebError.CheckedChanged += new System.EventHandler(this.cebError_CheckedChanged);
+            this.cebIsLoad.AutoSize = true;
+            this.cebIsLoad.Location = new System.Drawing.Point(982, 14);
+            this.cebIsLoad.Name = "cebIsLoad";
+            this.cebIsLoad.Size = new System.Drawing.Size(102, 19);
+            this.cebIsLoad.TabIndex = 21;
+            this.cebIsLoad.Text = "Загруженные";
+            this.cebIsLoad.UseVisualStyleBackColor = true;
+            this.cebIsLoad.CheckedChanged += new System.EventHandler(this.cebError_CheckedChanged);
             // 
             // cebPlanInog
             // 
@@ -388,8 +387,8 @@
             this.tsbCollect2,
             this.tsbDrop,
             this.tsbExportXml,
-            this.tsbEditStatus,
-            this.tscobStatus,
+            this.tsbEditStep,
+            this.tbStep,
             this.tsbEditLoad});
             this.tsViewPanel.Location = new System.Drawing.Point(0, 0);
             this.tsViewPanel.Name = "tsViewPanel";
@@ -533,23 +532,20 @@
             this.tsbExportXml.Text = "Выгрузить в эксель";
             this.tsbExportXml.Click += new System.EventHandler(this.tsbExportXml_Click);
             // 
-            // tsbEditStatus
+            // tsbEditStep
             // 
-            this.tsbEditStatus.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
-            this.tsbEditStatus.Image = ((System.Drawing.Image)(resources.GetObject("tsbEditStatus.Image")));
-            this.tsbEditStatus.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.tsbEditStatus.Name = "tsbEditStatus";
-            this.tsbEditStatus.Size = new System.Drawing.Size(103, 45);
-            this.tsbEditStatus.Text = "Поменять статус";
-            this.tsbEditStatus.Click += new System.EventHandler(this.tsbEditStatus_Click);
+            this.tsbEditStep.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.tsbEditStep.Image = ((System.Drawing.Image)(resources.GetObject("tsbEditStep.Image")));
+            this.tsbEditStep.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tsbEditStep.Name = "tsbEditStep";
+            this.tsbEditStep.Size = new System.Drawing.Size(103, 45);
+            this.tsbEditStep.Text = "Поменять статус";
+            this.tsbEditStep.Click += new System.EventHandler(this.tsbEditStatus_Click);
             // 
-            // tscobStatus
+            // tbStep
             // 
-            this.tscobStatus.Items.AddRange(new object[] {
-            "Ok",
-            "Error"});
-            this.tscobStatus.Name = "tscobStatus";
-            this.tscobStatus.Size = new System.Drawing.Size(121, 48);
+            this.tbStep.Name = "tbStep";
+            this.tbStep.Size = new System.Drawing.Size(100, 48);
             // 
             // tsbEditLoad
             // 
@@ -574,26 +570,17 @@
             // splitContainer2.Panel2
             // 
             this.splitContainer2.Panel2.AutoScroll = true;
-            this.splitContainer2.Panel2.Controls.Add(this.pbNapr);
             this.splitContainer2.Panel2.Controls.Add(this.panel1);
             this.splitContainer2.Size = new System.Drawing.Size(1246, 218);
             this.splitContainer2.SplitterDistance = 518;
             this.splitContainer2.TabIndex = 29;
-            // 
-            // pbNapr
-            // 
-            this.pbNapr.Location = new System.Drawing.Point(11, 12);
-            this.pbNapr.Name = "pbNapr";
-            this.pbNapr.Size = new System.Drawing.Size(724, 203);
-            this.pbNapr.TabIndex = 0;
-            this.pbNapr.TabStop = false;
             // 
             // panel1
             // 
             this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(735, 215);
+            this.panel1.Size = new System.Drawing.Size(724, 218);
             this.panel1.TabIndex = 1;
             // 
             // toolStrip1
@@ -613,7 +600,6 @@
             this.toolStripSeparator4,
             this.tsbRigth,
             this.tsbLeft,
-            this.tsbZoom,
             this.tsbKolNapr,
             this.tsbRename,
             this.tstbRename});
@@ -748,19 +734,6 @@
             this.tsbLeft.Text = "Повернуть против часов";
             this.tsbLeft.Click += new System.EventHandler(this.tsbLeft_Click);
             // 
-            // tsbZoom
-            // 
-            this.tsbZoom.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
-            this.tsbZoom.AutoSize = false;
-            this.tsbZoom.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.tsbZoom.Image = ((System.Drawing.Image)(resources.GetObject("tsbZoom.Image")));
-            this.tsbZoom.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
-            this.tsbZoom.ImageTransparentColor = System.Drawing.Color.White;
-            this.tsbZoom.Name = "tsbZoom";
-            this.tsbZoom.Size = new System.Drawing.Size(35, 35);
-            this.tsbZoom.Text = "Изменение размеров";
-            this.tsbZoom.Click += new System.EventHandler(this.tsbZoom_Click);
-            // 
             // tsbKolNapr
             // 
             this.tsbKolNapr.Name = "tsbKolNapr";
@@ -783,6 +756,11 @@
             // 
             this.tstbRename.Name = "tstbRename";
             this.tstbRename.Size = new System.Drawing.Size(100, 48);
+            // 
+            // contextMenuStrip1
+            // 
+            this.contextMenuStrip1.Name = "contextMenuStrip1";
+            this.contextMenuStrip1.Size = new System.Drawing.Size(61, 4);
             // 
             // dgvData
             // 
@@ -886,7 +864,6 @@
             this.splitContainer2.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer2)).EndInit();
             this.splitContainer2.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.pbNapr)).EndInit();
             this.toolStrip1.ResumeLayout(false);
             this.toolStrip1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvData)).EndInit();
@@ -924,10 +901,8 @@
         private System.Windows.Forms.ToolStripButton tbsResreshNapr;
         private System.Windows.Forms.ToolStrip toolStrip1;
         private System.Windows.Forms.SplitContainer splitContainer2;
-        private System.Windows.Forms.PictureBox pbNapr;
         private System.Windows.Forms.ToolStripButton tsbLeft;
         private System.Windows.Forms.ToolStripButton tsbRigth;
-        private System.Windows.Forms.ToolStripButton tsbZoom;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.ToolStripLabel tsbKolKmis;
         private System.Windows.Forms.ToolStripLabel tsbKolNapr;
@@ -949,11 +924,10 @@
         private System.Windows.Forms.ToolStripButton tsbExportXml;
         private System.Windows.Forms.TextBox tbNumerReestr;
         private System.Windows.Forms.ToolStripButton tsbCollect2;
-        private System.Windows.Forms.ToolStripButton tsbEditStatus;
-        private System.Windows.Forms.ToolStripComboBox tscobStatus;
+        private System.Windows.Forms.ToolStripButton tsbEditStep;
         private System.Windows.Forms.ToolStripButton tsbEditLoad;
         private System.Windows.Forms.CheckBox cebNumberReestr;
-        private System.Windows.Forms.CheckBox cebError;
+        private System.Windows.Forms.CheckBox cebIsLoad;
         private System.Windows.Forms.CheckBox cebPlanInog;
         private System.Windows.Forms.CheckBox cebPlanKirov;
         private System.Windows.Forms.CheckBox cebVMP;
@@ -962,6 +936,8 @@
         private System.Windows.Forms.ToolStripMenuItem обработатьОтчетыСчетовToolStripMenuItem;
         private DataGridViewEx dgvNapr;
         private DataGridViewEx dgvData;
+        private System.Windows.Forms.ToolStripTextBox tbStep;
+        private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
     }
 }
 

@@ -24,6 +24,7 @@ namespace Assistant.Utils
             {
                 str = reader.ReadToEnd();
             }
+
             return str;
         }
 

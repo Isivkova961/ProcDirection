@@ -12,6 +12,7 @@ using System.Windows.Forms;
 using System.Xml.Linq;
 using Assistant.Repository;
 using Assistant.Utils;
+using PdfiumViewer;
 using Repository.Entity.Auto;
 using Repository.Repository.Auto;
 
@@ -32,6 +33,8 @@ namespace ProcDirection
         public List<Napr> naprs = new List<Napr>();  
         public BindingList<NaprReestrKmis> naprReestr = new BindingList<NaprReestrKmis>();
 
+        public PdfViewer viewer = new PdfViewer();
+
         public fProcDirections()
         {
             InitializeComponent();
@@ -44,6 +47,10 @@ namespace ProcDirection
             }
             dtpDateIn.Value = new DateTime(year, month, 1);
             dtpDateOut.Value = new DateTime(year, month, DateTime.DaysInMonth(year, month));
+
+
+            panel1.Controls.Add(viewer);
+            viewer.Dock = DockStyle.Fill;
         }
 
         private void tsmImportNapr_Click(object sender, EventArgs e)
@@ -120,30 +127,32 @@ namespace ProcDirection
         private void tsbShowImage_Click(object sender, EventArgs e)
         {
             var path = dgvNapr.CurrentRow.Cells["path"].Value.ToString() + @"\" +
-                       dgvNapr.CurrentRow.Cells["fio_d"].Value.ToString() + ".jpg";
-            FileStream fs = new FileStream(path, FileMode.Open);
-            image = Image.FromStream(fs);
-            pbNapr.Image = image;
-            fs.Close();
+                       dgvNapr.CurrentRow.Cells["fio_d"].Value.ToString() + ".pdf";
+            
+            try
+            {
+                PdfDocument document = PdfDocument.Load(path);
+                 // Если вы хотите отобразить в форме
+                viewer.Document = document;
+                //TempValue.GetMessageOk(viewer.Renderer.Zoom.ToString());
+                viewer.Renderer.Zoom = 3;
+            }
+            catch (Exception ex)
+            {
+                TempValue.GetMessageError(ex.Message);
+            }
         }
 
         private void tsbLeft_Click(object sender, EventArgs e)
         {
-            image.RotateFlip(RotateFlipType.Rotate270FlipNone);
-            pbNapr.Image = image;
+            viewer.Renderer.RotateLeft();
+            
         }
 
         private void tsbRigth_Click(object sender, EventArgs e)
         {
-            image.RotateFlip(RotateFlipType.Rotate90FlipNone);
-            pbNapr.Image = image;
+            viewer.Renderer.RotateRight();
 
-        }
-
-        private void tsbZoom_Click(object sender, EventArgs e)
-        {
-            pbNapr.Width = image.Width;
-            pbNapr.Height = image.Height;
         }
 
         private void tsbImport_Click(object sender, EventArgs e)
@@ -290,6 +299,7 @@ namespace ProcDirection
             var _repoReestr = new ReestrRepository();
             var dsReestr = _repoReestr.List(dtpDateIn.Value, dtpDateOut.Value).ToDataSet();
             dgvData.TuneColumns(dsReestr,"reestr");
+            kmisNaprs.Clear();
             foreach (DataGridViewRow dataRow in dgvData.Rows)
             {
                 var reestr = new KmisNapr
@@ -305,6 +315,7 @@ namespace ProcDirection
                 };
                 kmisNaprs.Add(reestr);
             }
+            dgvData.DataSource = null;
             dgvData.DataSource = kmisNaprs;
             tsbKolKmis.Text = "Кол-во:" + kmisNaprs.Count.ToString();
         }
@@ -326,9 +337,9 @@ namespace ProcDirection
             FileInfo fi = new FileInfo(dialog.FileName);
             foreach (DataGridViewRow row in dgvNapr.Rows)
             {
-                var path1 = fi.DirectoryName + @"\" + row.Cells["fio_d"].Value.ToString() + ".jpg";
+                var path1 = fi.DirectoryName + @"\" + row.Cells["fio_d"].Value.ToString() + ".pdf";
                 var path = row.Cells["path"].Value.ToString() + @"\" +
-                row.Cells["fio_d"].Value.ToString() + ".jpg";
+                row.Cells["fio_d"].Value.ToString() + ".pdf";
                 File.Move(path, path1);
             }
             MessageBox.Show(@"Данные направления перенесены");
@@ -621,7 +632,7 @@ namespace ProcDirection
             {
                 naprReestrs = naprReestrs.Where(x => x.formpom == "3" && x.st_okato != "33000" && x.isLoad == false).ToList();
             }
-            if (cebError.Checked)
+            if (cebIsLoad.Checked)
             {
                 naprReestrs = naprReestrs.Where(x => x.status == "Error" && x.isLoad == false).ToList();
             }
@@ -729,11 +740,11 @@ namespace ProcDirection
         {
             isTable = true;
             var savedialog = new FolderBrowserDialog();
-            var path = "";
-            if (savedialog.ShowDialog() == DialogResult.OK)
-            {
-                path = savedialog.SelectedPath;
-            }
+            var path = @"y:\КМИС\Реестры\2025\Общие данные\Направления\";
+            //if (savedialog.ShowDialog() == DialogResult.OK)
+            //{
+            //    path = savedialog.SelectedPath;
+            //}
             CreateXmlNapr(path);
             TempValue.GetMessageOk("Файлы выгружены");
             RefreshNaprReestr();
@@ -793,11 +804,12 @@ namespace ProcDirection
 
         private void tsbEditStatus_Click(object sender, EventArgs e)
         {
-            var newStatus = tscobStatus.Text;
+            var newStep = tbStep.Text;
             try
             {
-                naprReestr.FirstOrDefault(x => x.kod == dgvData.CurrentRow.Cells["kod"].Value.ToString()).status = newStatus;
-                tscobStatus.Text = "";
+                naprReestr.FirstOrDefault(x => x.kod == dgvData.CurrentRow.Cells["kod"].Value.ToString()).step = newStep;
+                UpdateData(dgvData.CurrentRow.Cells["kod"].Value.ToString(), "", "", "", 0, newStep);
+                tbStep.Text = "";
             }
             catch (IOException es)
             {
@@ -826,7 +838,7 @@ namespace ProcDirection
 
         private void CheckChanger()
         {
-            var naprReestrs = naprReestr.Where(x => x.isLoad == false).ToList();
+            var naprReestrs = naprReestr.ToList();
             if (cebNumberReestr.Checked)
             {
                 naprReestrs = naprReestrs.Where(x => x.reestr_id == tbNumerReestr.Text).ToList();
@@ -847,9 +859,9 @@ namespace ProcDirection
             {
                 naprReestrs = naprReestrs.Where(x => x.formpom == "3" && x.st_okato != "33000" && x.isLoad == false).ToList();
             }
-            if (cebError.Checked)
+            if (cebIsLoad.Checked)
             {
-                naprReestrs = naprReestrs.Where(x => x.status == "Error" && x.isLoad == false).ToList();
+                naprReestrs = naprReestrs.Where(x => x.isLoad == true).ToList();
             }
             dgvData.DataSource = null;
             dgvData.DataSource = naprReestrs;
