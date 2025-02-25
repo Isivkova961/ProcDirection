@@ -400,63 +400,19 @@ namespace ProcDirection
 
         private void tsLoadReestrNapr_Click(object sender, EventArgs e)
         {
-            isTable = true;
-            var _repoReestr = new NaprReestrListRepository();
-            var dsReestr = _repoReestr.List(dtpDateIn.Value.Date, dtpDateOut.Value.Date).ToArray();
-            //dgvData.TuneColumns(dsReestr, "napr_reestr");
-            foreach (var arr in dsReestr)
+            try
             {
-                var reestr = new NaprReestrKmis()
-                {
-                    reestr_id = arr.reestr_id?.ToString(),
-                    formpom = arr.formpom?.ToString(),
-                    fio_d = arr.fio_d?.ToString(),
-                    kod = arr.kod?.ToString(),
-                    tipoplat = arr.tipoplat?.ToString(),
-                    stacolny = arr.staconly?.ToString(),
-                    step = arr.step?.ToString(),
-                    tipdpfs = arr.tipdpfs?.ToString(),
-                    sdpfs = arr.sdpfs?.ToString(),
-                    ndpfs = arr.ndpfs?.ToString(),
-                    st_okato = arr.st_okato?.ToString(),
-                    ogrnsmo = arr.ogrnsmo?.ToString(),
-                    fam = arr.fam?.ToString(),
-                    im = arr.im?.ToString(),
-                    ot = arr.ot?.ToString(),
-                    pol = arr.pol?.ToString(),
-                    drojd = arr.drojd?.ToString(),
-                    telefon = arr.telefon?.ToString(),
-                    kodamb = arr.kodamb?.ToString(),
-                    rnotdelamb = arr.rnotdelamb?.ToString(),
-                    rnpodramb = arr.rnpodramb?.ToString(),
-                    nnapr = arr.nnapr?.ToString(),
-                    dnapr = arr.dnapr?.ToString(),
-                    profot = arr.profot?.ToString(),
-                    profil_k = arr.profil_k?.ToString(),
-                    formamp = arr.formamp?.ToString(),
-                    mkbnapr = arr.mkbnapr?.ToString(),
-                    uslok = arr.uslok?.ToString(),
-                    kodstac = arr.kodstac?.ToString(),
-                    dgospplan = arr.dgospplan?.ToString(),
-                    rnotdelstac = arr.rnotdelstac?.ToString(),
-                    rnpodrstac = arr.rnpodrstac?.ToString(),
-                    mkbpo = arr.mkbpo?.ToString(),
-                    nib = arr.nib?.ToString(),
-                    dgospfakt = arr.dgospfakt?.ToString(),
-                    vrgospfakt = arr.vrgospfakt?.ToString(),
-                    dvyb = arr.dvyb?.ToString(),
-                    ishod = arr.ishod?.ToString(),
-                    plandlitgosp = arr.plandlitgosp?.ToString(),
-                    id = arr.id?.ToString(),
-                    rnvrachamb = arr.rnvrachamb?.ToString()
-                    
+                isTable = true;
+                var _repoReestr = new NaprReestrListRepository();
+                _repoReestr.List(dtpDateIn.Value, dtpDateOut.Value).Exec();
+                RefreshNaprReestr();
 
-                };
-                naprReestr.Add(reestr);
             }
-            dgvData.DataSource = null;
-            dgvData.DataSource = naprReestr;
-            tsbKolKmis.Text = "Кол-во:" + naprReestr.Count.ToString();
+            catch (Exception ex)
+            {
+                TempValue.GetMessageError(ex.Message);
+            }
+
         }
 
         private void tsbDrop_Click(object sender, EventArgs e)
@@ -745,10 +701,14 @@ namespace ProcDirection
             //{
             //    path = savedialog.SelectedPath;
             //}
-            CreateXmlNapr(path);
+
+            for (var i = 1; i < 4; i++)
+            {
+                CreateXmlNapr(path);
+                RefreshNaprReestr();
+                CheckChanger();
+            }
             TempValue.GetMessageOk("Файлы выгружены");
-            RefreshNaprReestr();
-            CheckChanger();
         }
 
         private void checkBox1_CheckedChanged(object sender, EventArgs e)
