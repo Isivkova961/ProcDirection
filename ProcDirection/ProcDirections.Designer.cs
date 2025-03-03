@@ -173,7 +173,6 @@
             this.логToolStripMenuItem.Name = "логToolStripMenuItem";
             this.логToolStripMenuItem.Size = new System.Drawing.Size(40, 20);
             this.логToolStripMenuItem.Text = "Лог";
-            this.логToolStripMenuItem.Click += new System.EventHandler(this.логToolStripMenuItem_Click);
             // 
             // tsmExportNapr
             // 

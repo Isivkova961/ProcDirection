@@ -225,11 +225,13 @@ namespace ProcDirection
 
         private void tsbCorrelatePath_Click(object sender, EventArgs e)
         {
+            viewer.Document?.Dispose();
+            viewer.Document = null;
             var newName = dgvData.CurrentRow.Cells["fio_d"].Value.ToString();
             var path = dgvNapr.CurrentRow.Cells["path"].Value.ToString() + @"\" +
-                       dgvNapr.CurrentRow.Cells["fio_d"].Value.ToString() + ".jpg";
+                       dgvNapr.CurrentRow.Cells["fio_d"].Value.ToString() + ".pdf";
             var pathNew = dgvNapr.CurrentRow.Cells["path"].Value.ToString() + @"\" +
-                       newName + ".jpg";
+                       newName + ".pdf";
             try
             {
                 File.Move(path, pathNew);
@@ -493,49 +495,70 @@ namespace ProcDirection
 
         public static XElement CreateXML(NaprReestrKmis person, string step)
         {
-            var xml =  new XElement(
+            var xml = new XElement(
                 "zap",
-                    new XElement("kod", person.kod),
-                    new XElement("tipoplat", person.tipoplat),
-                    new XElement("staconly", person.stacolny),
-                    new XElement("step", person.step),
-                    new XElement("id", person.id),
-                    new XElement("tipdpfs", person.tipdpfs),
-                    new XElement("sdpfs", person.sdpfs),
-                    new XElement("ndpfs", person.ndpfs),
-                    new XElement("st_okato", person.st_okato),
-                    new XElement("ogrnsmo", person.ogrnsmo),
-                    new XElement("fam", person.fam),
-                    new XElement("im", person.im),
-                    new XElement("ot", person.ot),
-                    new XElement("pol", person.pol),
-                    new XElement("drojd", person.drojd),
-                    new XElement("telefon", person.telefon),
-                    new XElement("kodamb", person.kodamb),
-                    new XElement("rnotdelamb", person.rnotdelamb),
-                    new XElement("rnpodramb", person.rnpodramb),
-                    new XElement("rnvrachamb", person.rnvrachamb),
-                    new XElement("nnapr", person.nnapr),
-                    new XElement("dnapr", person.dnapr),
-                    new XElement("profot", person.profot),
-                    new XElement("profil_k", person.profil_k),
-                    new XElement("formamp", person.formamp),
-                    new XElement("mkbnapr", person.mkbnapr),
-                    new XElement("uslok", person.uslok),
-                    new XElement("kodstac", person.kodstac),
-                    new XElement("dgospplan", person.dgospplan),
-                    new XElement("rnotdelstac", person.rnotdelstac),
-                    new XElement("rnpodrstac", person.rnpodrstac),
-                    new XElement("mkbpo", person.mkbpo),
-                    new XElement("nib", person.nib),
-                    new XElement("dgospfakt", person.dgospfakt),
-                    new XElement("vrgospfakt", person.vrgospfakt));
+                new XElement("kod", person.kod),
+                new XElement("tipoplat", person.tipoplat),
+                new XElement("staconly", person.stacolny),
+                new XElement("step", person.step),
+                new XElement("id", person.id),
+                new XElement("tipdpfs", person.tipdpfs),
+                new XElement("sdpfs", person.sdpfs),
+                new XElement("ndpfs", person.ndpfs),
+                new XElement("st_okato", person.st_okato),
+                new XElement("ogrnsmo", person.ogrnsmo),
+                new XElement("fam", person.fam),
+                new XElement("im", person.im),
+                new XElement("ot", person.ot),
+                new XElement("pol", person.pol),
+                new XElement("drojd", person.drojd),
+                new XElement("telefon", person.telefon));
+
+            if (step == "1")
+            {
+                xml.Add(new XElement("kodamb", person.kodamb));
+                xml.Add(new XElement("rnotdelamb", person.rnotdelamb));
+                xml.Add(new XElement("rnpodramb", person.rnpodramb));
+                xml.Add(new XElement("rnvrachamb", person.rnvrachamb));
+            }
+
+            xml.Add(new XElement("nnapr", person.nnapr));
+            xml.Add(new XElement("dnapr", person.dnapr));
+            xml.Add(new XElement("profot", person.profot));
+            xml.Add(new XElement("profil_k", person.profil_k));
+            xml.Add(new XElement("formamp", person.formamp));
+
+            if (step == "1")
+            {
+                xml.Add(new XElement("mkbnapr", person.mkbnapr));
+            }
+
+            xml.Add(new XElement("uslok", person.uslok));
+            xml.Add(new XElement("kodstac", person.kodstac));
+
+            if (step == "1")
+            {
+                xml.Add(new XElement("dgospplan", person.dgospplan));
+            }
+                    
+            if (step != "1")
+            {
+                xml.Add(new XElement("rnotdelstac", person.rnotdelstac));
+                xml.Add(new XElement("rnpodrstac", person.rnpodrstac));
+                xml.Add(new XElement("mkbpo", person.mkbpo));
+                xml.Add(new XElement("nib", person.nib));
+                xml.Add(new XElement("dgospfakt", person.dgospfakt));
+                xml.Add(new XElement("vrgospfakt", person.vrgospfakt));
+            }
             if (step == "3")
             {
                 xml.Add(new XElement("dvyb", person.dvyb));
                 xml.Add(new XElement("ishod", person.ishod));
             }
-            xml.Add(new XElement("plandlitgosp", person.plandlitgosp));
+            if (step != "3")
+            {
+                xml.Add(new XElement("plandlitgosp", person.plandlitgosp));
+            }
             if (person.formpom == "3" && person.st_okato == "33000" && person.step == "1")
                 xml.Add(new XElement("napr_pdf", ConvertPdfBase64(person)));
             if (person.formpom == "3" && person.st_okato != "33000" && person.step == "2")
@@ -568,6 +591,7 @@ namespace ProcDirection
 
             XElement xml = new XElement("gosp");
             var naprReestrs = naprReestr.Where(x => x.isLoad == false).ToList();
+
             if (cebNumberReestr.Checked)
             {
                 naprReestrs = naprReestrs.Where(x => x.reestr_id == tbNumerReestr.Text && x.isLoad == false).ToList();
@@ -592,9 +616,12 @@ namespace ProcDirection
             {
                 naprReestrs = naprReestrs.Where(x => x.status == "Error" && x.isLoad == false).ToList();
             }
-
+            List<NaprReestrKmis> _naprReestrs = new List<NaprReestrKmis>();
             foreach (var napr in naprReestrs.OrderBy(x => x.reestr_id).ThenBy(x => x.name_xml).ThenBy(x => x.step).ThenBy(x => x.formpom))
             {
+                if (_naprReestrs.Any(x=>x.ndpfs == napr.ndpfs)) continue;
+                else _naprReestrs.Add(napr);
+
                 if (napr.formpom == "3" && napr.pathPdf == null) continue;
                 if (dataXml.reestr_id == "")
                 {
